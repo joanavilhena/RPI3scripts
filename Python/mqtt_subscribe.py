@@ -19,7 +19,7 @@ def getServerData():
     print (message) 
     if(i['name']=='luz'):  
       print(message)                            
-      ret= client.publish("luz",("%s", message))
+      ret= client.publish("luz",message)
     if(i['name']=='ambtemp'):   
       message = i['solution_id'] + ':' + i['id'] + i['value']                             
       ret= client.publish("ambtemp",message)
