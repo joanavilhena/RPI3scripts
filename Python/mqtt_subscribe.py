@@ -71,7 +71,7 @@ def createSensorDataWebServer(solutionID,espID,value,topic):
   url = "http://206.189.23.62/api/sensorData"
 
   #payload = "\r\n{\"name\" : \" %s \", \" solution_id\" :  %d , \"value\": %f  , \"min_value\": 10, \"max_value\": 50}" % (topic, solutionID,value)
-  payload = "\r\n{\"name\" : \""+topic+"\", \"solution_id\" : "+str(solutionID)+", \"value\": "+value+", \"min_value\": 10, \"max_value\": 50}"
+  payload = "\r\n{\"name\" : \""+topic+"\", \"solution_id\" : "+str(solutionID)+", \"value\": "+str(value)+", \"min_value\": 10, \"max_value\": 50}"
   #"'{0}' is longer than '{1}'".format(name1, name2)
   #print("%s  %s" % (message.topic, message.payload))
   headers = {'Content-Type': 'application/json'}
