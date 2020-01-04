@@ -17,9 +17,8 @@ def getServerData():
     print('{} {}'.format(i['solution_id'], i['id']))
     message = i['solution_id'] + ':' + i['id'] + ':' + i['value']  
     if(i['name']=='luz'):  
-      
       print(message)                            
-      ret= client.publish("luz",("%s", message)
+      ret= client.publish("luz",("%s", message))
     if(i['name']=='ambtemp'):   
       message = i['solution_id'] + ':' + i['id'] + i['value']                             
       ret= client.publish("ambtemp",message)
