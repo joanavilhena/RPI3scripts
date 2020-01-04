@@ -60,7 +60,7 @@ def print_msg(client, userdata, message):
   print(solutionID)
     
 
-  if(message.topic == 'luz'):                          
+  if(message.topic == "luz"):                          
     #ret= client.publish("luz","message.payload")
       #updatewebserver
     print("update web server")
