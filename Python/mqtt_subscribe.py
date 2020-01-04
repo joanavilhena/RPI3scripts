@@ -67,6 +67,8 @@ def print_msg(client, userdata, message):
     client.on_publish = on_publish                          
     client.connect(broker,port)                                 
     ret= client.publish("luz","on")
+  else:
+    print("WHY THA FUCK??")  
   pass
 
 
