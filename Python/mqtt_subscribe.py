@@ -16,10 +16,16 @@ def getServerData():
   for i in r:
     print('{} {}'.format(i['solution_id'], i['id']))
     
-   # client.on_publish = on_publish                          
-    #client.connect(broker,port)
-    if(i['name']=='Wather Level'):                                
-      ret= client.publish("luz","webOK")
+    if(i['name']=='luz'):                                
+      ret= client.publish("luz","webluzOK")
+    if(i['name']=='ambtemp'):                                
+      ret= client.publish("ambtemp","webambtempOK")
+    if(i['name']=='ambtemp'):                                
+      ret= client.publish("ambhum","webambhumpOK")
+    if(i['name']=='ambtemp'):                                
+      ret= client.publish("solotemp","webambhumpOK")
+    if(i['name']=='ambtemp'):                                
+      ret= client.publish("ambco","webambcoOK")
     
 
 
@@ -34,9 +40,12 @@ def on_publish(client,userdata,result):             #create function for callbac
 
 def print_msg(client, userdata, message):
     print("%s : %s" % (message.topic, message.payload))
+    array = message.payload.split(":")
+    print(array)
 
-    if(message.topic == 'luz'):
-      print "Enviar luz para o mqtt"
+    if(message.topic == 'luz'):                          
+      ret= client.publish("luz","message.payload")
+      #updatewebserver
 
 
     client.on_publish = on_publish                          #assign function to callback
