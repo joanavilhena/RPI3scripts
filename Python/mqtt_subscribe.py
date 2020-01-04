@@ -54,7 +54,11 @@ def on_publish(client,userdata,result):
 
 def updateServer(solutionID,espID,value,topic):
   print("Funcao UPDATE")
-  r = requests.get(webserver +'api/sensorData/' + solutionID + '/sensor/' + espID)
+  print(solutionID)
+  print(espID)
+  print(value)
+  print(topic)
+  r = requests.get(webserver +'api/sensorData/solution' + solutionID + '/sensor/' + espID)
   if r.status_code != 200:
     print(r.status_code)
   else:
