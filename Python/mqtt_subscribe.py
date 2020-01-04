@@ -90,26 +90,40 @@ def updateServer(solutionID,espID,value,topic):
     print(data)
     pass
 
-  headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
 
-  data = {
-        "name" : str(topic),
-        "solution_id" : solutionID,
-        "value": value,
-        "min_value": 10,
-        "max_value": 50
-	}
+  url = "http://206.189.23.62/api/sensorData/update"
 
-  r = requests.post(webserver + 'api/sensorData/update', data=data, headers=headers)
-  print(r)
-  if r.status_code != 200:
-    print(r.status_code)
-  else:
-    print(r.status_code)
+  payload = "{\r\n\t\"name\" : \"luz\",\r\n\t\"solution_id\" : 2,\r\n\t\"value\": 200,\r\n    \"min_value\": 10,\r\n    \"max_value\": 50\r\n\t\r\n}"
+  headers = {
+    'Content-Type': 'application/json'
+  }
+
+  response = requests.request("POST", url, headers=headers, data = payload)
+
+  print(response.text.encode('utf8'))
+  print(response.status_code)
+
+
+ # headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+
+ # data = {
+ #       "name" : str(topic),
+ #       "solution_id" : solutionID,
+ #       "value": value,
+ #       "min_value": 10,
+  #      "max_value": 50
+	#}
+
+#  r = requests.post(webserver + 'api/sensorData/update', data=data, headers=headers)
+ # print(r)
+  #if r.status_code != 200:
+  #  print(r.status_code)
+  #else:
+  #  print(r.status_code)
     #global token
     #token=r.json()
-    print("Updated")
-    pass
+   # print("Updated")
+    #pass
   pass
 
 def print_msg(client, userdata, message):
