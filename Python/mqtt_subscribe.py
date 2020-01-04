@@ -20,7 +20,7 @@ def on_publish(client,userdata,result):             #create function for callbac
 
     pass
 
-
+getServerData()
 
 def print_msg(client, userdata, message):
     print("%s : %s" % (message.topic, message.payload))
