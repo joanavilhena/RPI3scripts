@@ -74,8 +74,8 @@ def print_msg(client, userdata, message):
     print("update web server")                             
     #ret= client.publish("solotemp",str(value))
   elif (message.topic == "solohum" ):
-    #print("update web server")                             
-    ret= client.publish("solohum",str(value))
+    print("update web server")                             
+    #ret= client.publish("solohum",str(value))
   elif (message.topic == "ambco" ):
     print("update web server")                             
     #ret= client.publish("ambco",str(value))
