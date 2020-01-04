@@ -15,7 +15,12 @@ def getServerData():
   
   for i in r:
     print('{} {}'.format(i['solution_id'], i['id']))
-    print (format(i['id']))
+    
+    client.on_publish = on_publish                          #assign function to callback
+    client.connect(broker,port)                                 #establish connection
+    ret= client.publish("luz","webOK")
+    
+
 
 
 def on_publish(client,userdata,result):             #create function for callback
