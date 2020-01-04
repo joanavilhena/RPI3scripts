@@ -57,16 +57,25 @@ def print_msg(client, userdata, message):
   solutionID = array[0]
   espID = array[1]
   value = array[2]
-  print(solutionID)
     
-
   if(message.topic == "luz"):                          
-    #ret= client.publish("luz","message.payload")
-      #updatewebserver
-    print("update web server")
-    client.on_publish = on_publish                          
-    client.connect(broker,port)                                 
-    ret= client.publish("luz","on")
+    print("update web server")                             
+    ret= client.publish("luz",str(value))
+  elif (message.topic == "ambtemp" ):
+    print("update web server")                             
+    ret= client.publish("ambtemp",str(value))
+  elif (message.topic == "ambhum" ):
+    print("update web server")                             
+    ret= client.publish("ambhum",str(value))
+  elif (message.topic == "solotemp" ):
+    print("update web server")                             
+    ret= client.publish("solotemp",str(value))
+  elif (message.topic == "solohum" ):
+    print("update web server")                             
+    ret= client.publish("solohum",str(value))
+  elif (message.topic == "ambco" ):
+    print("update web server")                             
+    ret= client.publish("ambco",str(value))
   else:
     print("AQUI PAAAH!!")
     print(message.topic)  
