@@ -16,8 +16,8 @@ def getServerData():
   for i in r:
     print('{} {}'.format(i['solution_id'], i['id']))
     
-    client.on_publish = on_publish                          #assign function to callback
-    client.connect(broker,port)                                 #establish connection
+   # client.on_publish = on_publish                          
+    #client.connect(broker,port)                                
     ret= client.publish("luz","webOK")
     
 
@@ -30,8 +30,6 @@ def on_publish(client,userdata,result):             #create function for callbac
 
 
     pass
-
-getServerData()
 
 def print_msg(client, userdata, message):
     print("%s : %s" % (message.topic, message.payload))
@@ -50,6 +48,8 @@ client= paho.Client("RPI3")
 client.connect(broker,port)
 
 
+
+
 subscribe.callback(print_msg, "#", hostname=broker)
 
 #Subscrever topicos
@@ -61,6 +61,8 @@ client.subscribe("ambhum",1)
 client.subscribe("solotemp",1)
 client.subscribe("solohum",1)
 client.subscribe("ambco",1)
+
+getServerData()
 
 
 
