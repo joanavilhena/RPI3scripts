@@ -79,8 +79,9 @@ def updateServer(solutionID,espID,value,topic):
   if r.status_code != 200:
     print(r.status_code)
   else:
-    global token
-    token=r.json()
+    #global token
+    #token=r.json()
+    print("Updated")
     pass
   pass
 
