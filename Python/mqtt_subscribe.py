@@ -70,7 +70,7 @@ def createSensorDataWebServer(solutionID,espID,value,topic):
   
   url = "http://206.189.23.62/api/sensorData"
 
-  payload = "\r\n{\"name\" : \" " + topic +" \", \" solution_id\" : "+ solutionID + ", \"value\": " + value + ", \"min_value\": 10, \"max_value\": 50}"
+  payload = "\r\n{\"name\" : \" "topic" \", \" solution_id\" : "solutionID", \"value\": "value", \"min_value\": 10, \"max_value\": 50}"
   headers = {'Content-Type': 'application/json'}
 
   r = requests.request("POST", url, headers=headers, data = payload)
@@ -91,16 +91,6 @@ def createSensorDataWebServer(solutionID,espID,value,topic):
 
 def updateServer(solutionID,espID,value,topic):
   print("Funcao UPDATE")
-
-  r = requests.get(webserver + 'api/sensorData/solution/' + solutionID + '/sensor/' + espID)
-  if r.status_code != 200:
-    print(r.status_code)
-  else:
-    data = r.json()
-    data['value'] = value
-    print(data)
-    pass
-
 
   url = "http://206.189.23.62/api/sensorData/update"
 
