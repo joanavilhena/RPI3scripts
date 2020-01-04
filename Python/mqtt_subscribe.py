@@ -63,8 +63,9 @@ def updateServer(solutionID,espID,value,topic):
   if r.status_code != 200:
     print(r.status_code)
   else:
-    r= r.json()
-    print(r)
+    print("touAQUI")
+    
+    print(r.json())
 
 
   data = {}
