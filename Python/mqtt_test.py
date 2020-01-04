@@ -11,11 +11,12 @@ def on_publish(client,userdata,result):             #create function for callbac
 
 def print_msg(client, userdata, message):
     print("%s : %s" % (message.topic, message.payload))
+    pass
 
 
 
-client1= paho.Client("RPI3")
-client1.connect(broker,port)
+client= paho.Client("RPI3")
+client.connect(broker,port)
 
 
 subscribe.callback(print_msg, "#", hostname=broker)
@@ -23,13 +24,29 @@ subscribe.callback(print_msg, "#", hostname=broker)
 #Subscrever topicos
 
 
-client1.subscribe("test",1)
+client.subscribe("luz",1)
+client.subscribe("ambtemp",1)
+client.subscribe("ambhum",1)
+client.subscribe("solotemp",1)
+client.subscribe("solohum",1)
+
+
+client.publish("luz",payload="publish", qos=0, retain = False)
+
+client.on_publish = on_publish 
+
+client.loop_forever()
+
+
+
+
+
 
 
 
                            #create client object
-client1.on_publish = on_publish 
+
 
                          #assign function to callback
                                  #establish connection
-ret= client1.publish("test","on")        
+  
