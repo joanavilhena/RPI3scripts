@@ -116,6 +116,19 @@ def updateServer(solutionID,espID,value,topic):
     pass
   pass
 
+
+def getSensor(solutionID,topic,espID):
+  url = "http://206.189.23.62/api/sensorData/solution/"+solutionID+"/sensor/"+espID
+  headers = {'Content-Type': 'application/json'}
+  response = requests.request("GET", url, headers=headers)
+  print(response.text.encode('utf8'))
+  print(response.status_code)
+
+  if(response.status_code == 200):
+    return True
+  else:
+    return False
+
 def print_msg(client, userdata, message):
 
   print("%s  %s" % (message.topic, message.payload))
@@ -123,34 +136,45 @@ def print_msg(client, userdata, message):
   solutionID = array[0]
   espID = array[1]
   value = array[2]
-    
-  if(message.topic == "luz"):                          
-    print("update web server")
-    print(solutionID)
-    print(espID)
-    print(value)
-    updateServer(solutionID,espID,value,message.topic)                             
-    #ret= client.publish("luz",str(value))
-  elif (message.topic == "ambtemp" ):
-    print("update web server")                             
-    #ret= client.publish("ambtemp",str(value))
-  elif (message.topic == "ambhum" ):
-    print("update web server")                             
-    #ret= client.publish("ambhum",str(value))
-  elif (message.topic == "solotemp" ):
-    print("update web server")                             
-    #ret= client.publish("solotemp",str(value))
-  elif (message.topic == "solohum" ):
-    print("update web server")                             
-    #ret= client.publish("solohum",str(value))
-  elif (message.topic == "ambco" ):
-    print("update web server")                             
-    #ret= client.publish("ambco",str(value))
-  else:
-    print("Topic not valid")
-    print(message.topic)  
-  pass
 
+  if(getSensor(solutionID,message.topic,espID)):
+
+    if(message.topic == "luz"):                          
+      print("update web server")
+      print(solutionID)
+      print(espID)
+      print(value)
+      updateServer(solutionID,espID,value,message.topic)                             
+      #ret= client.publish("luz",str(value))
+    elif (message.topic == "ambtemp" ):
+      print("update web server")   
+      updateServer(solutionID,espID,value,message.topic)                          
+      #ret= client.publish("ambtemp",str(value))
+    elif (message.topic == "ambhum" ):
+      print("update web server")
+      updateServer(solutionID,espID,value,message.topic)                             
+      #ret= client.publish("ambhum",str(value))
+    elif (message.topic == "solotemp" ):
+      updateServer(solutionID,espID,value,message.topic)
+      print("update web server")                             
+      #ret= client.publish("solotemp",str(value))
+    elif (message.topic == "solohum" ):
+      print("update web server")
+      updateServer(solutionID,espID,value,message.topic)                             
+      #ret= client.publish("solohum",str(value))
+    elif (message.topic == "ambco" ):
+      print("update web server")
+      updateServer(solutionID,espID,value,message.topic)                             
+      #ret= client.publish("ambco",str(value))
+    else:
+      print("Topic not valid")
+      print(message.topic)  
+    pass
+
+
+  else:
+    createSensorDataWebServer(solutionID,espID,value,message.topic)
+    pass
 
 client= paho.Client("RPI3")
 client.connect(broker,port)
@@ -163,7 +187,7 @@ client.subscribe("solohum",1)
 client.subscribe("ambco",1)
 
 getServerData()
-createSensorDataWebServer(2,4,200,"testepy")
+#createSensorDataWebServer(2,4,200,"testepy")
 login()
 
 
