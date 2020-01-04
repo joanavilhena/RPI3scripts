@@ -7,14 +7,18 @@ def on_publish(client,userdata,result):             #create function for callbac
     pass
 
 
+client1= paho.Client("RPI3")
+client1.connect(broker,port)
+
+
 #Subscrever topicos
 client1.subscribe("test",1)
 
 
 
-client1= paho.Client("RPI3")                           #create client object
+                           #create client object
 client1.on_publish = on_publish 
 
                          #assign function to callback
-client1.connect(broker,port)                                 #establish connection
+                                 #establish connection
 ret= client1.publish("test","on")        
