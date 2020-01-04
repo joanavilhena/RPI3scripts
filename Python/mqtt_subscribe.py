@@ -71,7 +71,7 @@ def updateServer(solutionID,espID,value,topic):
   headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
   print ("123")
   r = requests.update(webserver + 'api/sensorData/update', data=data, headers=headers)
-  
+  print(r)
   if r.status_code != 200:
     print(r.status_code)
   else:
