@@ -1,12 +1,23 @@
 import paho.mqtt.client as paho
 import paho.mqtt.subscribe as subscribe
+import requests
+
+webserver=""
 
 
 broker="169.254.108.4"
 port=1883
 
+def getServerData():
+  response = requests.get(webserver +'endpoint')
+  print response.json()
+
 def on_publish(client,userdata,result):             #create function for callback
-    print("data published \n")
+    print("Updating WebServer \n")
+
+    #Fazer update no webserver
+
+
     pass
 
 
