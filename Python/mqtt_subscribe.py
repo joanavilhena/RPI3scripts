@@ -9,6 +9,16 @@ webserver="http://206.189.23.62/"
 broker="169.254.108.4"
 port=1883
 
+token = ''
+header = {'Authorization':token}
+
+def login():
+  data = {'email': 'tomas1@sapo.com', 'password': '123' }
+  headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+  r = requests.post(webserver + "/api/login", data=json.dumps(data), headers=headers)
+  print(r.status_code)
+  pass
+
 def getServerData():
   response = requests.get(webserver +'/api/sensorData')
   r= response.json()
@@ -16,31 +26,27 @@ def getServerData():
   for i in r:
     print('{} {}'.format(i['solution_id'], i['id']))
     message = "{}:{}:{}".format(i['solution_id'],i['id'],i['value'])
-    "Shepherd {} is on duty.".format(i['solution_id'])
-    print(message) 
-    if(i['name']=='luz'):  
-      print(message)                            
+    if(i['name']=='luz'):                           
       ret= client.publish("luz",message)
-    if(i['name']=='ambtemp'):   
-      #message = i['solution_id'] + ':' + i['id'] + i['value']                             
+    if(i['name']=='ambtemp'):                            
       ret= client.publish("ambtemp",message)
     if(i['name']=='ambtemp'):                                
-      ret= client.publish("ambhum","webambhumpOK")
+      ret= client.publish("ambhum",message)
     if(i['name']=='ambtemp'):                                
-      ret= client.publish("solotemp","webambhumpOK")
+      ret= client.publish("solotemp",message)
     if(i['name']=='ambtemp'):                                
-      ret= client.publish("ambco","webambcoOK")
+      ret= client.publish("ambco",message)
+  pass
     
 
 
 
-def on_publish(client,userdata,result):             #create function for callback
-    print("Updating WebServer \n")
+def on_publish(client,userdata,result):            
+  print("Updating WebServer \n")
+  #Fazer update no webserver
 
-    #Fazer update no webserver
-
-
-    pass
+   
+  pass
 
 def print_msg(client, userdata, message):
 
@@ -63,6 +69,7 @@ def print_msg(client, userdata, message):
 client= paho.Client("RPI3")
 client.connect(broker,port)
 getServerData()
+login
 
 
 
