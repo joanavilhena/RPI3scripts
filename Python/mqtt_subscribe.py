@@ -49,20 +49,9 @@ client.subscribe("ambtemp",1)
 client.subscribe("ambhum",1)
 client.subscribe("solotemp",1)
 client.subscribe("solohum",1)
+client.subscribe("ambco",1)
+
 
 
 client.loop_forever()
-
-
-
-
-
-
-
-
-                           #create client object
-
-
-                         #assign function to callback
-                                 #establish connection
-  
+ 
