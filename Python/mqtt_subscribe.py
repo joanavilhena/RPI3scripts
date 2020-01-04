@@ -1,15 +1,21 @@
 import paho.mqtt.client as paho
 import paho.mqtt.subscribe as subscribe
-import paho.mqtt.publish as publish
 
 
 broker="169.254.108.4"
 port=1883
 
+def on_publish(client,userdata,result):             #create function for callback
+    print("data published \n")
+    pass
+
+
 
 def print_msg(client, userdata, message):
     print("%s : %s" % (message.topic, message.payload))
-    publish.client.publish("luz","on")
+    client.on_publish = on_publish                          #assign function to callback
+    client.connect(broker,port)                                 #establish connection
+    ret= client.publish("luz","on")
     pass
 
 
