@@ -63,17 +63,19 @@ def updateServer(solutionID,espID,value,topic):
     
   else:
 
-    print(r.json())
     data = r.json()
-    print(data['solution_id'])
     data['value'] = value
     print(data)
   
 
 
-  data = {}
+  
+  #headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+  #r = requests.post(webserver + "api/login", data=json.dumps(data), headers=headers)
+  
   headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-  r = requests.post(webserver + "api/login", data=json.dumps(data), headers=headers)
+  r = requests.update(webserver + 'api/sensorData/update', data=json.dumps(data), headers=headers)
+  
   if r.status_code != 200:
     print(r.status_code)
   else:
