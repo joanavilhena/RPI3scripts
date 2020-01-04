@@ -1,5 +1,6 @@
 import paho.mqtt.client as paho
 import paho.mqtt.subscribe as subscribe
+import paho.mqtt.publish as publish
 
 
 broker="169.254.108.4"
@@ -8,6 +9,7 @@ port=1883
 
 def print_msg(client, userdata, message):
     print("%s : %s" % (message.topic, message.payload))
+    publish.client.publish("luz","on")
     pass
 
 
