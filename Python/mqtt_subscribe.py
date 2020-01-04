@@ -18,7 +18,7 @@ def getServerData():
     
    # client.on_publish = on_publish                          
     #client.connect(broker,port)                                
-    #ret= client.publish("luz","webOK")
+    ret= client.publish("luz","webOK")
     
 
 
