@@ -18,10 +18,10 @@ def login():
   r = requests.post(webserver + "api/login", data=json.dumps(data), headers=headers)
   if r.status_code != 200:
     print(r.status_code)
-    else:
-      global token
-      token=r.json()
-      pass
+  else:
+    global token
+    token=r.json()
+    pass
   pass
 
 def getServerData():
