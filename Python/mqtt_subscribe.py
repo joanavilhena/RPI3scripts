@@ -152,7 +152,7 @@ def print_msg(client, userdata, message):
       #ret= client.publish("ambtemp",str(value))
     elif (message.topic == "ambhum" ):
       print("update web server")
-      updateServer(solutionID,espID,value,message.topic)                             
+        updateServer(solutionID,espID,value,message.topic)                             
       #ret= client.publish("ambhum",str(value))
     elif (message.topic == "solotemp" ):
       updateServer(solutionID,espID,value,message.topic)
