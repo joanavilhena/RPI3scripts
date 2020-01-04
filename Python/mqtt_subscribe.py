@@ -21,7 +21,7 @@ def getServerData():
       print(message)                            
       #ret= client.publish("luz",message)
     if(i['name']=='ambtemp'):   
-      message = i['solution_id'] + ':' + i['id'] + i['value']                             
+      #message = i['solution_id'] + ':' + i['id'] + i['value']                             
       ret= client.publish("ambtemp",message)
     if(i['name']=='ambtemp'):                                
       ret= client.publish("ambhum","webambhumpOK")
