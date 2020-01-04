@@ -16,8 +16,12 @@ def login():
   data = {'email': 'tomas1@sapo.com', 'password': '123' }
   headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
   r = requests.post(webserver + "api/login", data=json.dumps(data), headers=headers)
-  token = r.json()
-  print(r.status_code)
+  if r.status_code != 200:
+    print(r.status_code)
+    else:
+      global token
+      token=r.json()
+      pass
   pass
 
 def getServerData():
