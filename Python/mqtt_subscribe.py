@@ -15,7 +15,7 @@ def getServerData():
   
   for i in r:
     print('{} {}'.format(i['solution_id'], i['id']))
-    message = i['solution_id'] + ':'
+    message = str(i['solution_id']) + " has been removed")
     print (message) 
     if(i['name']=='luz'):  
       print(message)                            
