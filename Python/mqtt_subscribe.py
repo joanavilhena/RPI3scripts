@@ -62,14 +62,14 @@ def print_msg(client, userdata, message):
 
     client.on_publish = on_publish                          #assign function to callback
     client.connect(broker,port)                                 #establish connection
-    ret= client.publish("luz","on")
+    #ret= client.publish("luz","on")
     pass
 
 
 client= paho.Client("RPI3")
 client.connect(broker,port)
 getServerData()
-login
+login()
 
 
 
