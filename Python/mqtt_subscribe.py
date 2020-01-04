@@ -25,7 +25,7 @@ def login():
   pass
 
 def getServerData():
-  response = requests.get(webserver +'/api/sensorData')
+  response = requests.get(webserver +'api/sensorData')
   if response.status_code != 200:
     print(r.status_code)
   else:
