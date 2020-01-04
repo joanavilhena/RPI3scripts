@@ -91,31 +91,29 @@ def updateServer(solutionID,espID,value,topic):
     pass
 
 
- # url = "http://206.189.23.62/api/sensorData/update"
+  url = "http://206.189.23.62/api/sensorData/update"
 
-  #payload = "{\r\n\t\"name\" : \"luz\",\r\n\t\"solution_id\" : 2,\r\n\t\"value\": 200,\r\n    \"min_value\": 10,\r\n    \"max_value\": 50\r\n\t\r\n}"
-  #headers = {
-  #  'Content-Type': 'application/json'
-  #}
+  payload = "{\r\n\t\"name\" : \"luz\",\r\n\t\"solution_id\" : 2,\r\n\t\"value\": 200,\r\n    \"min_value\": 10,\r\n    \"max_value\": 50\r\n\t\r\n}"
+  headers = {'Content-Type': 'application/json'}
 
-  #response = requests.request("POST", url, headers=headers, data = payload)
+  r = requests.request("POST", url, headers=headers, data = payload)
 
-  #print(response.text.encode('utf8'))
-  #print(response.status_code)
-
-
-  headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-
-  data = {
-        "name" : "luz",
-        "solution_id" : 2,
-        "value": 200,
-        "min_value": 10,
-        "max_value": 50
-	}
-
-  r = requests.post(webserver + 'api/sensorData/update', data=data, headers=headers)
+  print(r.text.encode('utf8'))
   print(r.status_code)
+
+
+  #headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+
+  #data = {
+  #      "name" : "luz",
+  #      "solution_id" : 2,
+  #      "value": 200,
+  #      "min_value": 10,
+  #      "max_value": 50
+	#}
+
+  #r = requests.post(webserver + 'api/sensorData/update', data=data, headers=headers)
+ # print(r.status_code)
   if r.status_code != 201:
     print(r.status_code)
   else:
