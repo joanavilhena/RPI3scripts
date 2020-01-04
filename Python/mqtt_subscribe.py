@@ -78,7 +78,7 @@ def createSensorDataWebServer(solutionID,espID,value,topic):
 
   r = requests.request("POST", url, headers=headers, data = payload)
 
-  print(r.text.encode('utf8'))
+ # print(r.text.encode('utf8'))
   print(r.status_code)  
 
   if r.status_code != 200:
@@ -174,7 +174,7 @@ def print_msg(client, userdata, message):
 
   else:
     print("create sensor")
-   # createSensorDataWebServer(solutionID,espID,value,message.topic)
+    createSensorDataWebServer(solutionID,espID,value,message.topic)
     pass
 
 client= paho.Client("RPI3")
