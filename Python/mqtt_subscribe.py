@@ -47,10 +47,7 @@ def getServerData():
 
 
 def on_publish(client,userdata,result):            
-  print("Updating WebServer \n")
-  #Fazer update no webserver
-
-   
+  #print("Updating WebServer \n") 
   pass
 
 def print_msg(client, userdata, message):
@@ -64,12 +61,12 @@ def print_msg(client, userdata, message):
     
 
   if(message.topic == 'luz'):                          
-    ret= client.publish("luz","message.payload")
+    #ret= client.publish("luz","message.payload")
       #updatewebserver
     print("update web server")
     client.on_publish = on_publish                          
     client.connect(broker,port)                                 
-    #ret= client.publish("luz","on")
+    ret= client.publish("luz","on")
   pass
 
 
