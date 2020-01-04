@@ -16,10 +16,12 @@ def getServerData():
   for i in r:
     print('{} {}'.format(i['solution_id'], i['id']))
     
-    if(i['name']=='luz'):                                
-      ret= client.publish("luz","webluzOK")
-    if(i['name']=='ambtemp'):                                
-      ret= client.publish("ambtemp","webambtempOK")
+    if(i['name']=='luz'):  
+      message = i['solution_id'] + ':' + i['id'] + i['value']                              
+      ret= client.publish("luz",message)
+    if(i['name']=='ambtemp'):   
+      message = i['solution_id'] + ':' + i['id'] + i['value']                             
+      ret= client.publish("ambtemp",message)
     if(i['name']=='ambtemp'):                                
       ret= client.publish("ambhum","webambhumpOK")
     if(i['name']=='ambtemp'):                                
@@ -39,9 +41,11 @@ def on_publish(client,userdata,result):             #create function for callbac
     pass
 
 def print_msg(client, userdata, message):
+
     print("%s : %s" % (message.topic, message.payload))
     array = message.payload.split(":")
     print(array)
+    #pos0 = Numero da solucao pos1 numero do esp pos3 valor
 
     if(message.topic == 'luz'):                          
       ret= client.publish("luz","message.payload")
