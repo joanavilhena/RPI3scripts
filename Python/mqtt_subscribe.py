@@ -18,7 +18,7 @@ def getServerData():
     
    # client.on_publish = on_publish                          
     #client.connect(broker,port)                                
-    ret= client.publish("luz","webOK")
+    #ret= client.publish("luz","webOK")
     
 
 
@@ -46,7 +46,7 @@ def print_msg(client, userdata, message):
 
 client= paho.Client("RPI3")
 client.connect(broker,port)
-
+getServerData()
 
 
 
@@ -62,7 +62,7 @@ client.subscribe("solotemp",1)
 client.subscribe("solohum",1)
 client.subscribe("ambco",1)
 
-getServerData()
+
 
 
 
