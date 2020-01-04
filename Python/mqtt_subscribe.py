@@ -2,14 +2,14 @@ import paho.mqtt.client as paho
 import paho.mqtt.subscribe as subscribe
 import requests
 
-webserver=""
+webserver="http://206.189.23.62/"
 
 
 broker="169.254.108.4"
 port=1883
 
 def getServerData():
-  response = requests.get(webserver +'endpoint')
+  response = requests.get(webserver +'/api/sensorData')
   print response.json()
 
 def on_publish(client,userdata,result):             #create function for callback
