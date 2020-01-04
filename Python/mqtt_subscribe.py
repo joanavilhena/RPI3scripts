@@ -16,7 +16,7 @@ def login():
   data = {'email': 'tomas1@sapo.com', 'password': '123' }
   headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
   r = requests.post(webserver + "api/login", data=json.dumps(data), headers=headers)
-  token = requests.json()
+  token = r.json()
   print(r.status_code)
   pass
 
