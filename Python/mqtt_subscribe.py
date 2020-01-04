@@ -16,6 +16,7 @@ def login():
   data = {'email': 'tomas1@sapo.com', 'password': '123' }
   headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
   r = requests.post(webserver + "api/login", data=json.dumps(data), headers=headers)
+  token = requests.json()
   print(r.status_code)
   pass
 
@@ -50,20 +51,22 @@ def on_publish(client,userdata,result):
 
 def print_msg(client, userdata, message):
 
-    print("%s : %s" % (message.topic, message.payload))
-    array = message.payload.split(":")
-    print(array)
-    #pos0 = Numero da solucao pos1 numero do esp pos3 valor
+  print("%s : %s" % (message.topic, message.payload))
+  array = message.payload.split(":")
+  solutionID = array[0]
+  espID = array[1]
+  value = array[2]
+  print(solutionID)
+    
 
-    if(message.topic == 'luz'):                          
-      ret= client.publish("luz","message.payload")
+  if(message.topic == 'luz'):                          
+    ret= client.publish("luz","message.payload")
       #updatewebserver
-
-
-    client.on_publish = on_publish                          #assign function to callback
-    client.connect(broker,port)                                 #establish connection
+    print("update web server")
+    client.on_publish = on_publish                          
+    client.connect(broker,port)                                 
     #ret= client.publish("luz","on")
-    pass
+  pass
 
 
 client= paho.Client("RPI3")
