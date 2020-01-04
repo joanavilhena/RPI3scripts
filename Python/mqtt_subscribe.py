@@ -15,7 +15,7 @@ def getServerData():
   
   for i in r:
     print('{} {}'.format(i['solution_id'], i['id']))
-    message ='{}:'.format(str(i['solution_id']))
+    message =str(i['solution_id'])
     print (message) 
     if(i['name']=='luz'):  
       print(message)                            
