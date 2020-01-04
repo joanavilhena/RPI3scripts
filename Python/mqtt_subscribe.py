@@ -10,23 +10,37 @@ broker="169.254.108.4"
 port=1883
 
 token = ''
+userID= ''
 header = {'Authorization':token}
 
 def login():
-  data = {'email': 'tomas1@sapo.com', 'password': '123' }
-  headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-  r = requests.post(webserver + "api/login", data=json.dumps(data), headers=headers)
+  url = "http://206.189.23.62/api/login"
+
+  payload = "{\r\n\t\"email\" : \"tomas1@sapo.com\",\r\n\t\"password\" : \"123\",\r\n\t\r\n}"
+  headers = {'Content-Type': 'application/json'}
+
+  r = requests.request("POST", url, headers=headers, data = payload)
+
+  print(r.text.encode('utf8'))
+  
   if r.status_code != 200:
     print(r.status_code)
   else:
     global token
     token=r.json()
+    getUserID()
   pass
+
+def getUserID():
+  pass
+
+
+
 
 def getServerData():
   response = requests.get(webserver +'api/sensorData')
   if response.status_code != 200:
-    print(r.status_code)
+    print(response.status_code)
   else:
     r= response.json()
   
@@ -53,27 +67,24 @@ def on_publish(client,userdata,result):
   pass
 
 def createSensorDataWebServer(solutionID,espID,value,topic):
-  headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+  
+  url = "http://206.189.23.62/api/sensorData"
 
-  data = {
-    "name" : str(topic),
-    "solution_id" : solutionID,
-    "value": value,
-    "min_value": 10,
-    "max_value": 50
-	
-    }
-    
+  payload = "\r\n{\"name\" : \" " + topic +" \", \" solution_id\" : "+ solutionID + ", \"value\": " + value + ", \"min_value\": 10, \"max_value\": 50}"
+  headers = {'Content-Type': 'application/json'}
 
-  r = requests.post(webserver + 'api/sensorData/update', data=data, headers=headers)
-  print(r)
+  r = requests.request("POST", url, headers=headers, data = payload)
+
+  print(r.text.encode('utf8'))
+  print(r.status_code)  
+
   if r.status_code != 200:
     print(r.status_code)
   else:
     print(r.status_code)
       #global token
       #token=r.json()
-    print("Updated")
+    print("Created")
     pass
   pass
 
@@ -101,19 +112,6 @@ def updateServer(solutionID,espID,value,topic):
   print(r.text.encode('utf8'))
   print(r.status_code)
 
-
-  #headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-
-  #data = {
-  #      "name" : "luz",
-  #      "solution_id" : 2,
-  #      "value": 200,
-  #      "min_value": 10,
-  #      "max_value": 50
-	#}
-
-  #r = requests.post(webserver + 'api/sensorData/update', data=data, headers=headers)
- # print(r.status_code)
   if r.status_code != 201:
     print(r.status_code)
   else:
@@ -171,6 +169,7 @@ client.subscribe("solohum",1)
 client.subscribe("ambco",1)
 
 getServerData()
+createSensorDataWebServer(2,4,200,"testepy")
 login()
 
 
