@@ -52,7 +52,7 @@ def on_publish(client,userdata,result):
 
 def print_msg(client, userdata, message):
 
-  print("%s : %s" % (message.topic, message.payload))
+  print("%s:%s" % (message.topic, message.payload))
   array = message.payload.split(":")
   solutionID = array[0]
   espID = array[1]
