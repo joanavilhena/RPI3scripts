@@ -25,10 +25,10 @@ def on_publish(client,userdata,result):             #create function for callbac
 def print_msg(client, userdata, message):
     print("%s : %s" % (message.topic, message.payload))
 
-    if(message.topic == "luz"):
+    if(message.topic == 'luz'):
       print "Enviar luz para o mqtt"
 
-      
+
     client.on_publish = on_publish                          #assign function to callback
     client.connect(broker,port)                                 #establish connection
     ret= client.publish("luz","on")
