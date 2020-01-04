@@ -58,7 +58,8 @@ def updateServer(solutionID,espID,value,topic):
   print(espID)
   print(value)
   print(topic)
-  r = requests.get(webserver +'api/sensorData/solution' + solutionID + '/sensor/' + espID)
+  r = requests.get(webserver +'api/sensorData/solution/' + int(solutionID) + 'sensor/' + int(espID))
+ # api/sensorData/solution/2/sensor/4
   if r.status_code != 200:
     print(r.status_code)
   else:
