@@ -72,7 +72,7 @@ def createSensorDataWebServer(solutionID,espID,value,topic):
 
   payload = "\r\n{\"name\" : \" %s \", \" solution_id\" :  %d , \"value\": %f  , \"min_value\": 10, \"max_value\": 50}" % (topic, solutionID,value)
   
-  print("%s  %s" % (message.topic, message.payload))
+  #print("%s  %s" % (message.topic, message.payload))
   headers = {'Content-Type': 'application/json'}
 
   r = requests.request("POST", url, headers=headers, data = payload)
