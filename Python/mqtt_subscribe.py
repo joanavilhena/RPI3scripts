@@ -107,9 +107,9 @@ def updateServer(solutionID,espID,value,topic):
   headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
 
   data = {
-        "name" : topic,
-        "solution_id" : solutionID,
-        "value": value,
+        "name" : "luz",
+        "solution_id" : 2,
+        "value": 200,
         "min_value": 10,
         "max_value": 50
 	}
