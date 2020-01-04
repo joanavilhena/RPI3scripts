@@ -26,7 +26,10 @@ def login():
 
 def getServerData():
   response = requests.get(webserver +'/api/sensorData')
-  r= response.json()
+  if r.status_code != 200:
+    print(r.status_code)
+  else:
+    r= response.json()
   
   for i in r:
     print('{} {}'.format(i['solution_id'], i['id']))
