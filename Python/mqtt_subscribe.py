@@ -14,7 +14,7 @@ def getServerData():
   r= response.json()
   
   for i in r:
-    print('{}'.format(i['solution_id']))
+    print('{} {}'.format(i['solution_id'], i['id']))
 
 
 def on_publish(client,userdata,result):             #create function for callback
