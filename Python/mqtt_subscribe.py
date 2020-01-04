@@ -121,7 +121,7 @@ def getSensor(solutionID,topic,espID):
   url = "http://206.189.23.62/api/sensorData/solution/"+solutionID+"/sensor/"+espID
   headers = {'Content-Type': 'application/json'}
   response = requests.request("GET", url, headers=headers)
-  print(response.text.encode('utf8'))
+  #print(response.text.encode('utf8'))
   print(response.status_code)
 
   if(response.status_code == 200):
