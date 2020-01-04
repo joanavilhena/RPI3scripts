@@ -64,8 +64,11 @@ def updateServer(solutionID,espID,value,topic):
   else:
 
     print(r.json())
-    data = "{}".format(r.json())
+    data = r.json()
+    print(data['solution_id'])
+    data['value'] = value
     print(data)
+  
 
 
   data = {}
