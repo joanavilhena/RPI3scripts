@@ -15,6 +15,7 @@ def getServerData():
   
   for i in r:
     print('{} {}'.format(i['solution_id'], i['id']))
+    print .format(i)
 
 
 def on_publish(client,userdata,result):             #create function for callback
