@@ -21,7 +21,6 @@ def login():
   else:
     global token
     token=r.json()
-    pass
   pass
 
 def getServerData():
@@ -53,6 +52,27 @@ def on_publish(client,userdata,result):
   #print("Updating WebServer \n") 
   pass
 
+def updateServer(solutionID,espID,value,topic):
+
+  response = requests.get(webserver +'api/sensorData/' + solutionID + '/sensor/' + espID)
+  if response.status_code != 200:
+    print(r.status_code)
+  else:
+    r= response.json()
+    print(r)
+
+
+  data = {}
+  headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+  r = requests.post(webserver + "api/login", data=json.dumps(data), headers=headers)
+  if r.status_code != 200:
+    print(r.status_code)
+  else:
+    global token
+    token=r.json()
+  pass
+
+
 def print_msg(client, userdata, message):
 
   print("%s  %s" % (message.topic, message.payload))
@@ -62,7 +82,8 @@ def print_msg(client, userdata, message):
   value = array[2]
     
   if(message.topic == "luz"):                          
-    print("update web server")                             
+    print("update web server")
+    updateServer(solutionID,espID,value,message.topic)                             
     #ret= client.publish("luz",str(value))
   elif (message.topic == "ambtemp" ):
     print("update web server")                             
