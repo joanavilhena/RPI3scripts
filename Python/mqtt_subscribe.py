@@ -18,7 +18,7 @@ def getServerData():
     
    # client.on_publish = on_publish                          
     #client.connect(broker,port)
-    if(i['name'=='Wather Level']):                                
+    if(i['name']=='Wather Level'):                                
       ret= client.publish("luz","webOK")
     
 
