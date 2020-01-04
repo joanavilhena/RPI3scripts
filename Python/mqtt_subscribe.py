@@ -17,8 +17,9 @@ def getServerData():
     print('{} {}'.format(i['solution_id'], i['id']))
     
    # client.on_publish = on_publish                          
-    #client.connect(broker,port)                                
-    ret= client.publish("luz","webOK")
+    #client.connect(broker,port)
+    if(i['name'=='Wather Level']):                                
+      ret= client.publish("luz","webOK")
     
 
 
