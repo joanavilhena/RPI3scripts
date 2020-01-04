@@ -11,7 +11,10 @@ port=1883
 def getServerData():
   response = requests.get(webserver +'/api/sensorData')
   r= response.json()
-  print r['solution_id'][0]['name']
+  #print r.['solution_id']
+  y = json.loads(r)
+  print(y["solution_id"])
+
 
 def on_publish(client,userdata,result):             #create function for callback
     print("Updating WebServer \n")
