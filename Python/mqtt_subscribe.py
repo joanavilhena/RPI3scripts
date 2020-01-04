@@ -83,6 +83,9 @@ def print_msg(client, userdata, message):
     
   if(message.topic == "luz"):                          
     print("update web server")
+    print(solutionID)
+    print(espID)
+    print(value)
     updateServer(solutionID,espID,value,message.topic)                             
     #ret= client.publish("luz",str(value))
   elif (message.topic == "ambtemp" ):
