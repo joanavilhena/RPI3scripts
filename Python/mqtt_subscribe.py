@@ -66,19 +66,15 @@ def updateServer(solutionID,espID,value,topic):
     data = r.json()
     data['value'] = value
     print(data)
-  
+    pass
 
-
-  
-  #headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-  #r = requests.post(webserver + "api/login", data=json.dumps(data), headers=headers)
-  
   headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
   r = requests.update(webserver + 'api/sensorData/update', data=json.dumps(data), headers=headers)
   
   if r.status_code != 200:
     print(r.status_code)
   else:
+    print(r.status_code)
     #global token
     #token=r.json()
     print("Updated")
