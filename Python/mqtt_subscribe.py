@@ -59,12 +59,11 @@ def updateServer(solutionID,espID,value,topic):
  # api/sensorData/solution/2/sensor/4
   r = requests.get(webserver + 'api/sensorData/solution/' + solutionID + '/sensor/' + espID)
   if r.status_code != 200:
-    print("deu bronca")
     print(r.status_code)
     
   else:
-    print("touAQUI")
-    print(r.json)
+
+    print(r.json())
     data = "{}".format(r.json())
     print(data)
 
