@@ -77,7 +77,7 @@ def updateServer(solutionID,espID,value,topic):
 	    "min_value": 10,
 	    "max_value": 50
   }
-  r = requests.update(webserver + 'api/sensorData/update', data=data, headers=headers)
+  r = requests.post(webserver + 'api/sensorData/update', data=data, headers=headers)
   print(r)
   if r.status_code != 200:
     print(r.status_code)
