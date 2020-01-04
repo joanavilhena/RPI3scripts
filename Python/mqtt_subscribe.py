@@ -52,7 +52,7 @@ def on_publish(client,userdata,result):
 
 def print_msg(client, userdata, message):
 
-  print("%s:%s" % (message.topic, message.payload))
+  print("%s  %s" % (message.topic, message.payload))
   array = message.payload.split(":")
   solutionID = array[0]
   espID = array[1]
@@ -60,30 +60,38 @@ def print_msg(client, userdata, message):
     
   if(message.topic == "luz"):                          
     print("update web server")                             
-    ret= client.publish("luz",str(value))
+    #ret= client.publish("luz",str(value))
   elif (message.topic == "ambtemp" ):
     print("update web server")                             
-    ret= client.publish("ambtemp",str(value))
+    #ret= client.publish("ambtemp",str(value))
   elif (message.topic == "ambhum" ):
     print("update web server")                             
-    ret= client.publish("ambhum",str(value))
+    #ret= client.publish("ambhum",str(value))
   elif (message.topic == "solotemp" ):
     print("update web server")                             
-    ret= client.publish("solotemp",str(value))
+    #ret= client.publish("solotemp",str(value))
   elif (message.topic == "solohum" ):
-    print("update web server")                             
+    #print("update web server")                             
     ret= client.publish("solohum",str(value))
   elif (message.topic == "ambco" ):
     print("update web server")                             
-    ret= client.publish("ambco",str(value))
+    #ret= client.publish("ambco",str(value))
   else:
-    print("AQUI PAAAH!!")
+    print("Topic not valid")
     print(message.topic)  
   pass
 
 
 client= paho.Client("RPI3")
 client.connect(broker,port)
+
+client.subscribe("luz",1)
+client.subscribe("ambtemp",1)
+client.subscribe("ambhum",1)
+client.subscribe("solotemp",1)
+client.subscribe("solohum",1)
+client.subscribe("ambco",1)
+
 getServerData()
 login()
 
@@ -94,12 +102,6 @@ subscribe.callback(print_msg, "#", hostname=broker)
 #Subscrever topicos
 
 
-client.subscribe("luz",1)
-client.subscribe("ambtemp",1)
-client.subscribe("ambhum",1)
-client.subscribe("solotemp",1)
-client.subscribe("solohum",1)
-client.subscribe("ambco",1)
 
 
 
