@@ -52,24 +52,47 @@ def on_publish(client,userdata,result):
   #print("Updating WebServer \n") 
   pass
 
+def createSensorDataWebServer(solutionID,espID,value,topic)
+  headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+
+    data = {
+      {
+	  "name" : str(topic),
+	  "solution_id" : solution_id,
+	  "value": value,
+    "min_value": 10,
+    "max_value": 50
+	
+}
+    }
+
+    r = requests.post(webserver + 'api/sensorData/update', data=data, headers=headers)
+    print(r)
+    if r.status_code != 200:
+      print(r.status_code)
+    else:
+      print(r.status_code)
+      #global token
+      #token=r.json()
+      print("Updated")
+      pass
+    pass
+
+
 def updateServer(solutionID,espID,value,topic):
   print("Funcao UPDATE")
 
-  #r = requests.get(webserver +'api/sensorData/solution/' + int(solutionID) + 'sensor/' + int(espID))
- # api/sensorData/solution/2/sensor/4
   r = requests.get(webserver + 'api/sensorData/solution/' + solutionID + '/sensor/' + espID)
   if r.status_code != 200:
     print(r.status_code)
-    
   else:
-
     data = r.json()
     data['value'] = value
     print(data)
     pass
 
   headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-  print ("123")
+
   data = {
     "name" : topic,
 	    "solution_id" : solutionID,
@@ -77,6 +100,7 @@ def updateServer(solutionID,espID,value,topic):
 	    "min_value": 10,
 	    "max_value": 50
   }
+
   r = requests.post(webserver + 'api/sensorData/update', data=data, headers=headers)
   print(r)
   if r.status_code != 200:
