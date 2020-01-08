@@ -39,9 +39,12 @@ def getSolutionData():
   if response.status_code != 200:
     print(response.status_code) 
   else:
-    createSolution()
+
+   
     r= response.json()
     print(r)
+    createSolution()
+    pass
   pass
 
 
