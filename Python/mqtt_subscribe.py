@@ -44,14 +44,13 @@ def getSolutionData():
 
 
 def createSolution():
-
   url = "http://206.189.23.62/api/solution/simple"
-
-  data = "\r\n{\"vip\" : 1 \", \" token\" :  %d , \"state\": 1 }" % (token)
-
-  headers = {'Content-Type': 'application/json'}
-
-  response = requests.request("POST", url, headers=headers, data = data)
+  payload = "{\r\n    \"token\": \""+ str(token) +"\",\r\n    \"vip\": 1\r\n}"
+  headers = {
+    'Content-Type': 'application/json'
+  }
+  
+  response = requests.request("POST", url, headers=headers, data = payload)
 
   
   if response.status_code != 201:
