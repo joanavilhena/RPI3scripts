@@ -82,6 +82,7 @@ def getServerData():
     print(response.status_code)
   else:
     r= response.json()
+    print(r)
   
   for i in r:
     print('{} {}'.format(i['token'], i['id']))
