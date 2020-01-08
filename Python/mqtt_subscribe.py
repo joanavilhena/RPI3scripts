@@ -43,7 +43,10 @@ def getSolutionData():
   response = requests.get(webserver +'api/solution/token/' + token)
   if response.status_code != 200:
     print(response.status_code) 
+    print(response)
     createSolution()
+  else:
+    print(response.json())
   
     
     
