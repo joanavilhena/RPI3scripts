@@ -87,31 +87,31 @@ def getServerData():
   #print('{} {}'.format(r['water_force'], r['fan_force']))
   if len(r['sensor_data'])==0:
     print("no sensor data")
-    #for i in r:
-    #  print('{}'.format( i['id']))
-    #  message = "{}:{}:1:{}".format(token,i['id'],i['value'])
-    #  if(i['name']=='luz'):                           
-    #    ret= client.publish("luz",message)
-    #  elif(i['name']=='ambtemp'):                            
-    #    ret= client.publish("ambtemp",message)
-    #  elif(i['name']=='ambhum'):                               
-    #    ret= client.publish("ambhum",message)
+    for i in r:
+      print('{}'.format( i['id']))
+      message = "{}:{}:1:{}".format(token,i['id'],i['value'])
+      if(i['name']=='luz'):                           
+        ret= client.publish("luz",message)
+      elif(i['name']=='ambtemp'):                            
+        ret= client.publish("ambtemp",message)
+      elif(i['name']=='ambhum'):                               
+        ret= client.publish("ambhum",message)
   #############################DESCONMENTAR QUANDO O TOMAS DER AS APIS######################################
       # if(b['state']=="LIGADO" && ventoinha['state']=="ON" && (i['value']>i['max_vallue']))
-        #    ret= client.publish("rega","1:3")
+       #     ret= client.publish("rega","1:3")
   ##########################################################################################################
-     # elif(i['name']=='solotemp'):                                
-     #   ret= client.publish("solotemp",message)
-     # elif(i['name']=='solohum'):                                
-     #   ret= client.publish("solohum",message)
-     #   if(i['value'] < i['min_value']):
-      #    ret= client.publish("rega","1:3")
-    # elif(i['name']=='ventoinha'):                                
-    #   ret= client.publish("ventoinha",message)
-    #  elif(i['name']=='rega'):                                
-    #   ret= client.publish("rega",message)
-      #else:
-       # pass
+      elif(i['name']=='solotemp'):                                
+        ret= client.publish("solotemp",message)
+      elif(i['name']=='solohum'):                                
+        ret= client.publish("solohum",message)
+        if(i['value'] < i['min_value']):
+          ret= client.publish("rega","1:3")
+     elif(i['name']=='ventoinha'):                                
+       ret= client.publish("ventoinha",message)
+      elif(i['name']=='rega'):                                
+       ret= client.publish("rega",message)
+      else:
+        pass
       
   else:
     print("has data")
