@@ -34,10 +34,9 @@ def getSolutionData():
 
   response = requests.get(webserver +'api/solution/token/' + token)
   if response.status_code != 200:
-    print(response.status_code)
-  elif response.status_code == 404:
-    createSolution()
+    print(response.status_code) 
   else:
+    createSolution()
     r= response.json()
     print(r)
   pass
