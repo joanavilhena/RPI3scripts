@@ -82,7 +82,7 @@ def getServerData():
     print(response.status_code)
   else:
     r= response.json()
-    print(r['water_force'])
+    print(r['sensor_data'])
 
   #print('{} {}'.format(r['water_force'], r['fan_force']))
   if r['sensor_data'] == '[]':
