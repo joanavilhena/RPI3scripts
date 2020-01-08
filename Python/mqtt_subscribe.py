@@ -77,13 +77,13 @@ def createSolution():
 def getServerData():
 #http://206.189.23.62/api/solution/token/4567890
 ##########ALTERAR########
-  response = requests.get(webserver +'api/solution/token/' + token)
+  response = requests.get(webserver +'api/solution/sensorData/' + token)
   if response.status_code != 200:
     print(response.status_code)
   else:
     r= response.json()
     print(r)
-  
+
   for i in r:
     print('{} {}'.format(i['token'], i['id']))
     message = "{}:{}:1:{}".format(i['token'],i['id'],i['value'])
