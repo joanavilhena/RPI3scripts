@@ -79,8 +79,6 @@ def getServerData():
     print(response.status_code)
   else:
     r= response.json()
-
-  print(r)
   
   for i in r:
     print('{} {}'.format(i['token'], i['id']))
@@ -249,7 +247,7 @@ client.subscribe("ventoinha",1)
 
 print("Iniciou")
 getSolutionData()
-getServerData()
+#getServerData()
 
 #createSensorDataWebServer(2,4,200,"testepy")
 #login()
