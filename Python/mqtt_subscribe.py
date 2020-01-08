@@ -10,6 +10,7 @@ broker="169.254.108.4"
 port=1883
 
 token = '1356'
+token_hub = ''
 
 def login():
   url = "http://206.189.23.62/api/login"
@@ -31,6 +32,8 @@ def login():
 
 
 def getSolutionData():
+
+  print("Get solutionData")
 
   response = requests.get(webserver +'api/solution/token/' + token)
   if response.status_code != 200:
@@ -187,7 +190,7 @@ def print_msg(client, userdata, message):
 
     if(message.topic == "luz"):                          
       print("update web server")
-      print(solutionID)
+      #print(token)
       print(espID)
       print(value)
       updateServer(espID,value,message.topic)                             
@@ -237,7 +240,7 @@ client.subscribe("ventoinha",1)
 
 
 
-
+print("Iniciou")
 getSolutionData()
 
 #getSolutionData()
