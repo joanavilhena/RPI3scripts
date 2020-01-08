@@ -80,7 +80,7 @@ def getServerData():
   else:
     r= response.json()
 
-  print (r['water_force'])
+  print(r)
   
   for i in r:
     print('{} {}'.format(i['token'], i['id']))
