@@ -112,6 +112,8 @@ def getServerData():
     #   ret= client.publish("rega",message)
       else:
         pass
+      pass
+    pass
   else:
     print("no sensorData")
   pass
