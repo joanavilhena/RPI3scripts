@@ -57,7 +57,7 @@ def createSolution():
     print(response.status_code)
   else:
     r= response.json()
-    print(r)
+    print(response.status_code)
 
   
   
