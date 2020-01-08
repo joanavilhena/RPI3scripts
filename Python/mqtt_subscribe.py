@@ -9,9 +9,7 @@ webserver="http://206.189.23.62/"
 broker="169.254.108.4"
 port=1883
 
-token = ''
-userID= ''
-header = {'Authorization':token}
+token = '1356'
 
 def login():
   url = "http://206.189.23.62/api/login"
@@ -28,37 +26,90 @@ def login():
   else:
     global token
     token=r.json()
-    getUserID()
   pass
 
-def getUserID():
+
+
+def getSolutionData():
+
+  response = requests.get(webserver +'api/solution/token/' + token)
+  if response.status_code != 200:
+    print(response.status_code)
+  elif response.status_code == 404:
+    createSolution()
+  else:
+    r= response.json()
+    print(r)
   pass
 
+
+def createSolution():
+
+  url = "http://206.189.23.62/api/solution"
+
+  #payload = "\r\n{\"name\" : \" %s \", \" solution_id\" :  %d , \"value\": %f  , \"min_value\": 10, \"max_value\": 50}" % (topic, solutionID,value)
+ data = {
+    "vip" : 1,
+    "token" : "1356",
+    "state" : 1
+  } 
+  #"'{0}' is longer than '{1}'".format(name1, name2)
+  #print("%s  %s" % (message.topic, message.payload))
+  headers = {'Content-Type': 'application/json'}
+
+  r = requests.request("POST", url, headers=headers, data = data)
+
+  
+  if response.status_code != 201:
+    print(response.status_code)
+  else:
+    r= response.json()
+
+  
+  
+  
+  pass
 
 
 
 def getServerData():
-  response = requests.get(webserver +'api/sensorData')
+#http://206.189.23.62/api/solution/token/4567890
+##########ALTERAR########
+  response = requests.get(webserver +'api/solution/token/' + token)
   if response.status_code != 200:
     print(response.status_code)
   else:
     r= response.json()
+
+  
   
   for i in r:
-    print('{} {}'.format(i['solution_id'], i['id']))
-    message = "{}:{}:{}".format(i['solution_id'],i['id'],i['value'])
+    print('{} {}'.format(i['token'], i['id']))
+    message = "{}:{}:1:{}".format(i['token'],i['id'],i['value'])
     if(i['name']=='luz'):                           
       ret= client.publish("luz",message)
-    if(i['name']=='ambtemp'):                            
+    elif(i['name']=='ambtemp'):                            
       ret= client.publish("ambtemp",message)
-    if(i['name']=='ambtemp'):                                
+    elif(i['name']=='ambhum'):                               
       ret= client.publish("ambhum",message)
-    if(i['name']=='ambtemp'):                                
+#############################DESCONMENTAR QUANDO O TOMAS DER AS APIS######################################
+     # if(b['state']=="LIGADO" && ventoinha['state']=="ON" && (i['value']>i['max_vallue']))
+      #    ret= client.publish("rega","1:3")
+##########################################################################################################
+    elif(i['name']=='solotemp'):                                
       ret= client.publish("solotemp",message)
-    if(i['name']=='ambtemp'):                                
-      ret= client.publish("ambco",message)
+    elif(i['name']=='solohum'):                                
+      ret= client.publish("solohum",message)
+      if(i['value'] < i['min_value']):
+        ret= client.publish("rega","1:3")
+   # elif(i['name']=='ventoinha'):                                
+   #   ret= client.publish("ventoinha",message)
+  #  elif(i['name']=='rega'):                                
+   #   ret= client.publish("rega",message)
+    else:
+      pass
+
   pass
-    
 
 
 
@@ -66,12 +117,12 @@ def on_publish(client,userdata,result):
   #print("Updating WebServer \n") 
   pass
 
-def createSensorDataWebServer(solutionID,espID,value,topic):
+def createSensorDataWebServer(espID,value,topic):
   
   url = "http://206.189.23.62/api/sensorData"
 
   #payload = "\r\n{\"name\" : \" %s \", \" solution_id\" :  %d , \"value\": %f  , \"min_value\": 10, \"max_value\": 50}" % (topic, solutionID,value)
-  payload = "\r\n{\"name\" : \""+topic+"\", \"solution_id\" : "+str(solutionID)+", \"value\": "+str(value)+", \"min_value\": 10, \"max_value\": 50}"
+  payload = "\r\n{\"name\" : \""+topic+"\", \"solution_id\" : "+ token +", \"value\": "+str(value)+", \"min_value\": 10, \"max_value\": 50}"
   #"'{0}' is longer than '{1}'".format(name1, name2)
   #print("%s  %s" % (message.topic, message.payload))
   headers = {'Content-Type': 'application/json'}
@@ -81,7 +132,7 @@ def createSensorDataWebServer(solutionID,espID,value,topic):
  # print(r.text.encode('utf8'))
   print(r.status_code)  
 
-  if r.status_code != 200:
+  if r.status_code != 201:
     print(r.status_code)
   else:
     print(r.status_code)
@@ -92,13 +143,13 @@ def createSensorDataWebServer(solutionID,espID,value,topic):
   pass
 
 
-def updateServer(solutionID,espID,value,topic):
+def updateServer(espID,value,topic):
   print("Funcao UPDATE")
 
 
   url = "http://206.189.23.62/api/sensorData/update"
 
-  payload = "{\r\n\t\"name\" : \"luz\",\r\n\t\"solution_id\" : 2,\r\n\t\"value\": 200,\r\n    \"min_value\": 10,\r\n    \"max_value\": 50\r\n\t\r\n}"
+  payload = "{\r\n\t\"name\" : \"luz\",\r\n\t\"token\" : 2,\r\n\t\"value\": 200,\r\n    \"min_value\": 10,\r\n    \"max_value\": 50\r\n\t\r\n}"
   headers = {'Content-Type': 'application/json'}
 
   r = requests.request("POST", url, headers=headers, data = payload)
@@ -117,8 +168,8 @@ def updateServer(solutionID,espID,value,topic):
   pass
 
 
-def getSensor(solutionID,topic,espID):
-  url = "http://206.189.23.62/api/sensorData/solution/"+solutionID+"/sensor/"+espID
+def getSensor(topic,espID):
+  url = "http://206.189.23.62/api/sensorData/solution/"+token+"/sensor/"+espID
   headers = {'Content-Type': 'application/json'}
   response = requests.request("GET", url, headers=headers)
   #print(response.text.encode('utf8'))
@@ -133,38 +184,38 @@ def print_msg(client, userdata, message):
 
   print("%s  %s" % (message.topic, message.payload))
   array = message.payload.split(":")
-  solutionID = array[0]
+  #solutionID = array[0]
   espID = array[1]
   value = array[2]
 
-  if(getSensor(solutionID,message.topic,espID)):
+  if(getSensor(message.topic,espID)):
 
     if(message.topic == "luz"):                          
       print("update web server")
       print(solutionID)
       print(espID)
       print(value)
-      updateServer(solutionID,espID,value,message.topic)                             
+      updateServer(espID,value,message.topic)                             
       #ret= client.publish("luz",str(value))
     elif (message.topic == "ambtemp" ):
       print("update web server")   
-      updateServer(solutionID,espID,value,message.topic)                          
+      updateServer(espID,value,message.topic)                          
       #ret= client.publish("ambtemp",str(value))
     elif (message.topic == "ambhum" ):
       print("update web server")
-      updateServer(solutionID,espID,value,message.topic)                             
+      updateServer(espID,value,message.topic)                             
       #ret= client.publish("ambhum",str(value))
     elif (message.topic == "solotemp" ):
-      updateServer(solutionID,espID,value,message.topic)
+      updateServer(espID,value,message.topic)
       print("update web server")                             
       #ret= client.publish("solotemp",str(value))
     elif (message.topic == "solohum" ):
       print("update web server")
-      updateServer(solutionID,espID,value,message.topic)                             
+      updateServer(espID,value,message.topic)                             
       #ret= client.publish("solohum",str(value))
     elif (message.topic == "ambco" ):
       print("update web server")
-      updateServer(solutionID,espID,value,message.topic)                             
+      updateServer(espID,value,message.topic)                             
       #ret= client.publish("ambco",str(value))
     else:
       print("Topic not valid")
@@ -174,7 +225,7 @@ def print_msg(client, userdata, message):
 
   else:
     print("create sensor")
-    createSensorDataWebServer(solutionID,espID,value,message.topic)
+    createSensorDataWebServer(espID,value,message.topic)
     pass
 
 client= paho.Client("RPI3")
@@ -186,14 +237,23 @@ client.subscribe("ambhum",1)
 client.subscribe("solotemp",1)
 client.subscribe("solohum",1)
 client.subscribe("ambco",1)
+client.subscribe("rega",1)
+client.subscribe("ventoinha",1)
 
-getServerData()
+
+
+
+getSolutionData()
+
+#getSolutionData()
+#getServerData()
+
 #createSensorDataWebServer(2,4,200,"testepy")
-login()
+#login()
 
 
 
-subscribe.callback(print_msg, "#", hostname=broker)
+#subscribe.callback(print_msg, "#", hostname=broker)
 
 #Subscrever topicos
 
