@@ -45,16 +45,10 @@ def getSolutionData():
 
 def createSolution():
 
-  url = "http://206.189.23.62/api/solution"
+  url = "http://206.189.23.62/api/solution/simple"
 
   data = "\r\n{\"vip\" : 1 \", \" token\" :  %d , \"state\": 1 }" % (token)
- #data = {
- #   "vip" : 1,
- #   "token" : "1356",
- #   "state" : 1
- # } 
-  #"'{0}' is longer than '{1}'".format(name1, name2)
-  #print("%s  %s" % (message.topic, message.payload))
+
   headers = {'Content-Type': 'application/json'}
 
   response = requests.request("POST", url, headers=headers, data = data)
