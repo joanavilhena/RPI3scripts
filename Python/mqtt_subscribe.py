@@ -57,13 +57,14 @@ def createSolution():
   #print("%s  %s" % (message.topic, message.payload))
   headers = {'Content-Type': 'application/json'}
 
-  r = requests.request("POST", url, headers=headers, data = data)
+  response = requests.request("POST", url, headers=headers, data = data)
 
   
   if response.status_code != 201:
     print(response.status_code)
   else:
     r= response.json()
+    print(r)
 
   
   
