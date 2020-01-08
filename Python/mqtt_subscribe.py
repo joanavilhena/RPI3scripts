@@ -85,8 +85,8 @@ def getServerData():
     print(r)
 
   for i in r:
-    print('{} {}'.format(i['token'], i['id']))
-    message = "{}:{}:1:{}".format(i['token'],i['id'],i['value'])
+    print('{} {}'.format(i['water_force'], i['id']))
+    message = "{}:{}:1:{}".format(token,i['id'],i['value'])
     if(i['name']=='luz'):                           
       ret= client.publish("luz",message)
     elif(i['name']=='ambtemp'):                            
