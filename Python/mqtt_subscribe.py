@@ -84,32 +84,35 @@ def getServerData():
     r= response.json()
     print(r)
 
-  for i in r:
-    print('{} {}'.format(i['water_force'], i['id']))
-    message = "{}:{}:1:{}".format(token,i['id'],i['value'])
-    if(i['name']=='luz'):                           
-      ret= client.publish("luz",message)
-    elif(i['name']=='ambtemp'):                            
-      ret= client.publish("ambtemp",message)
-    elif(i['name']=='ambhum'):                               
-      ret= client.publish("ambhum",message)
-#############################DESCONMENTAR QUANDO O TOMAS DER AS APIS######################################
-     # if(b['state']=="LIGADO" && ventoinha['state']=="ON" && (i['value']>i['max_vallue']))
-      #    ret= client.publish("rega","1:3")
-##########################################################################################################
-    elif(i['name']=='solotemp'):                                
-      ret= client.publish("solotemp",message)
-    elif(i['name']=='solohum'):                                
-      ret= client.publish("solohum",message)
-      if(i['value'] < i['min_value']):
-        ret= client.publish("rega","1:3")
-   # elif(i['name']=='ventoinha'):                                
-   #   ret= client.publish("ventoinha",message)
-  #  elif(i['name']=='rega'):                                
-   #   ret= client.publish("rega",message)
-    else:
-      pass
+  if(r['sensor_data']!='[]')
 
+    for i in r:
+      print('{} {}'.format(i['water_force'], i['id']))
+      message = "{}:{}:1:{}".format(token,i['id'],i['value'])
+      if(i['name']=='luz'):                           
+        ret= client.publish("luz",message)
+      elif(i['name']=='ambtemp'):                            
+        ret= client.publish("ambtemp",message)
+      elif(i['name']=='ambhum'):                               
+        ret= client.publish("ambhum",message)
+  #############################DESCONMENTAR QUANDO O TOMAS DER AS APIS######################################
+      # if(b['state']=="LIGADO" && ventoinha['state']=="ON" && (i['value']>i['max_vallue']))
+        #    ret= client.publish("rega","1:3")
+  ##########################################################################################################
+      elif(i['name']=='solotemp'):                                
+        ret= client.publish("solotemp",message)
+      elif(i['name']=='solohum'):                                
+        ret= client.publish("solohum",message)
+        if(i['value'] < i['min_value']):
+          ret= client.publish("rega","1:3")
+    # elif(i['name']=='ventoinha'):                                
+    #   ret= client.publish("ventoinha",message)
+    #  elif(i['name']=='rega'):                                
+    #   ret= client.publish("rega",message)
+      else:
+        pass
+  else:
+    print("no sensorData")
   pass
 
 
