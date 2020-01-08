@@ -65,11 +65,7 @@ def createSolution():
   else:
     #r= response.json()
     print(response.status_code)
-
-  
-  
-  
-  pass
+    pass
 
 
 
