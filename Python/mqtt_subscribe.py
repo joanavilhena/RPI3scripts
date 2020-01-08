@@ -250,7 +250,7 @@ client.subscribe("ventoinha",1)
 
 print("Iniciou")
 getSolutionData()
-#getServerData()
+getServerData()
 
 #createSensorDataWebServer(2,4,200,"testepy")
 #login()
