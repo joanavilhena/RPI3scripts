@@ -84,7 +84,7 @@ def getServerData():
     r= response.json()
     print(r)
 
-   print('{} {}'.format(r['water_force'], r['fan_force']))
+  print('{} {}'.format(r['water_force'], r['fan_force']))
   if r['sensor_data'] != '[]':
 
     for i in r:
