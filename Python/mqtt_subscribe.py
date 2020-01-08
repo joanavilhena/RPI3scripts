@@ -47,12 +47,12 @@ def createSolution():
 
   url = "http://206.189.23.62/api/solution"
 
-  #payload = "\r\n{\"name\" : \" %s \", \" solution_id\" :  %d , \"value\": %f  , \"min_value\": 10, \"max_value\": 50}" % (topic, solutionID,value)
- data = {
-    "vip" : 1,
-    "token" : "1356",
-    "state" : 1
-  } 
+  data = "\r\n{\"vip\" : 1 \", \" token\" :  %d , \"state\": 1 }" % (token)
+ #data = {
+ #   "vip" : 1,
+ #   "token" : "1356",
+ #   "state" : 1
+ # } 
   #"'{0}' is longer than '{1}'".format(name1, name2)
   #print("%s  %s" % (message.topic, message.payload))
   headers = {'Content-Type': 'application/json'}
