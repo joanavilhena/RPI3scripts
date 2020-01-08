@@ -85,10 +85,10 @@ def getServerData():
     print(len(r['sensor_data']))
 
   print('{} {}'.format(r['water_force'], r['fan_force']))
-  if len(r['sensor_data'])==0:
+  if len(r['sensor_data'])!=0:
     print("no sensor data")
     for i in r:
-      #print('{}'.format( i['id']))
+      print('{}'.format( i['id']))
       message = "{}:{}:1:{}".format(token,i['id'],i['value'])
       if(i['name']=='luz'):                           
         ret= client.publish("luz",message)
