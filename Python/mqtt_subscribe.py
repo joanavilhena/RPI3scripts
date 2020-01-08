@@ -84,7 +84,7 @@ def getServerData():
     r= response.json()
     print(len(r['sensor_data']))
 
-  #print('{} {}'.format(r['water_force'], r['fan_force']))
+  print('{} {}'.format(r['water_force'], r['fan_force']))
   if len(r['sensor_data'])==0:
     print("no sensor data")
     for i in r:
@@ -106,10 +106,10 @@ def getServerData():
         ret= client.publish("solohum",message)
         if(i['value'] < i['min_value']):
           ret= client.publish("rega","1:3")
-     elif(i['name']=='ventoinha'):                                
-       ret= client.publish("ventoinha",message)
-      elif(i['name']=='rega'):                                
+      elif(r['water_force']=='rega'):                                
        ret= client.publish("rega",message)
+      elif(r['fan_force']=='ventoinha'):                                
+       ret= client.publish("ventoinha",message)
       else:
         pass
       
