@@ -29,7 +29,11 @@ def login():
     token=r.json()
   pass
 
+def ligarRega():
+  pass
 
+def ligarVentoinha():
+  pass
 
 def getSolutionData():
 
@@ -39,8 +43,8 @@ def getSolutionData():
   if response.status_code != 200:
     print(response.status_code) 
     createSolution()
-  else:
-    print("IT as Data!!")
+  
+    
     
   pass
 
@@ -75,7 +79,7 @@ def getServerData():
   else:
     r= response.json()
 
-  
+  print (r['water_force'])
   
   for i in r:
     print('{} {}'.format(i['token'], i['id']))
@@ -182,11 +186,17 @@ def print_msg(client, userdata, message):
   espID = array[1]
   value = array[2]
 
-  if(getSensor(message.topic,espID)):
+
+  if(message.topic == "rega"):
+  
+    ligarRega()
+  elif(message.topic == "ventoinha"):
+    ligarVentoinha()
+
+  elif(getSensor(message.topic,espID)):
 
     if(message.topic == "luz"):                          
       print("update web server")
-      #print(token)
       print(espID)
       print(value)
       updateServer(espID,value,message.topic)                             
@@ -238,16 +248,14 @@ client.subscribe("ventoinha",1)
 
 print("Iniciou")
 getSolutionData()
-
-#getSolutionData()
-#getServerData()
+getServerData()
 
 #createSensorDataWebServer(2,4,200,"testepy")
 #login()
 
 
 
-#subscribe.callback(print_msg, "#", hostname=broker)
+subscribe.callback(print_msg, "#", hostname=broker)
 
 #Subscrever topicos
 
