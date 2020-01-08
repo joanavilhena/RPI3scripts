@@ -44,6 +44,7 @@ def getSolutionData():
 
 
 def createSolution():
+  print("Create")
   url = "http://206.189.23.62/api/solution/simple"
   payload = "{\r\n    \"token\": \""+ str(token) +"\",\r\n    \"vip\": 1\r\n}"
   headers = {
@@ -52,11 +53,12 @@ def createSolution():
   
   response = requests.request("POST", url, headers=headers, data = payload)
 
+  print(response.status_code)
   
   if response.status_code != 201:
     print(response.status_code)
   else:
-    r= response.json()
+    #r= response.json()
     print(response.status_code)
 
   
