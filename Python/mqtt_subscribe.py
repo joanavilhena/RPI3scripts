@@ -109,13 +109,13 @@ def getServerData():
     print(r['fan_force'])
     #print(len(r['sensor_data']))
 
-  if (r['water_force'] == 1):
-    message="{}:{}:{}".format(token,3,3)
-    ret= client.publish("rega",message)
-    
-  if (r['fan_force'] == 1):
-    message="{}:{}".format(token,3)
-    ret= client.publish("ventoinha",message)
+    if (r['water_force'] == 1):
+      message="{}:{}:{}".format(token,3,3)
+      ret= client.publish("rega",message)
+      
+    if (r['fan_force'] == 1):
+      message="{}:{}".format(token,3)
+      ret= client.publish("ventoinha",message)
 
 
   print('{} {}'.format(r['water_force'], r['fan_force']))
