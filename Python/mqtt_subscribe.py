@@ -101,13 +101,13 @@ def getServerData():
 ##########ALTERAR########
 #/solution/sensorData/4567890
   response = requests.get(webserver +'api/solution/sensorData/' + token)
-  if response.status_code != 200:
+  if response.status_code == 200:
     print(response.status_code)
   #else:
   #  r= response.json()
   #  print("Fan")
-  r = response
-  print(r.content)
+    r = response.json()
+  print(r)
     #print(len(r['sensor_data']))
   #r=response.json()
   if (r['water_force'] == 1):
