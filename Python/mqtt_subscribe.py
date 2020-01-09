@@ -300,15 +300,17 @@ client.subscribe("ventoinha",1)
 
 
 print("Iniciou")
-getSolutionData()
-getServerData()
+while(True):
+  getSolutionData()
+  getServerData()
+  subscribe.callback(print_msg, "#", hostname=broker)
 
 #createSensorDataWebServer(2,4,200,"testepy")
 #login()
 
 
 
-subscribe.callback(print_msg, "#", hostname=broker)
+
 
 #Subscrever topicos
 
