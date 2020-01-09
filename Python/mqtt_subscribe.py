@@ -2,6 +2,7 @@ import paho.mqtt.client as paho
 import paho.mqtt.subscribe as subscribe
 import requests
 import json
+import time
 
 webserver="http://206.189.23.62/"
 
@@ -107,7 +108,7 @@ def getServerData():
   #  r= response.json()
   #  print("Fan")
     r = response.json()
-  print(r)
+  #print(r)
     #print(len(r['sensor_data']))
   #r=response.json()
   if (r['water_force'] == 1):
@@ -299,6 +300,7 @@ print("Iniciou")
 while(True):
   #getSolutionData()
   getServerData()
+  time.sleep(5)
   #subscribe.callback(print_msg, "#", hostname=broker)
 
 #createSensorDataWebServer(2,4,200,"testepy")
