@@ -153,7 +153,7 @@ def getServerData():
       
   else:
     print("has no data")
-  pass
+  
 
 
 
