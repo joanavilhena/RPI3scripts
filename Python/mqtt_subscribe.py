@@ -11,7 +11,7 @@ broker="169.254.108.4"
 port=1883
 
 #token = '1356'
-token = '4567890'
+token = '4567890d'
 token_hub = ''
 
 def login():
@@ -33,7 +33,7 @@ def login():
 
 
 def ligarRega():
-  url = "http://206.189.23.62/api/solution/force/water/update/4567890"
+  url = "http://206.189.23.62/api/solution/water/update/4567890"
 
   payload = "{\n\t\"water_force\" : 1\n}"
   headers = {
@@ -47,7 +47,7 @@ def ligarRega():
   
 
 def ligarVentoinha():
-  url = "http://206.189.23.62/api/solution/force/fan/update/4567890"
+  url = "http://206.189.23.62/api/solution/fan/update/4567890"
 
   payload = "{\n\t\"fan_force\" : 1\n}"
   headers = {
@@ -116,7 +116,7 @@ def getServerData():
     ret= client.publish("rega",message)
     
   if (r['fan_force'] == 1):
-    message="{}:{}".format(token,3)
+    message="{}:{}:{}".format(token,3,3)
     ret= client.publish("ventoinha",message)
 
 
@@ -126,7 +126,7 @@ def getServerData():
     for i in r['sensor_data']:
       print(i)
       print('{}'.format( i['id']))
-      message="{}:{}:1:{}".format(token,i['id'],i['value'])
+      message="{}:1:1:{}:1".format(token,i['value'])
       if(i['name']=='luz'):                           
         ret= client.publish("luz",message)
       elif(i['name']=='ambtemp'):                            
@@ -268,7 +268,7 @@ def print_msg(client, userdata, message):
       print("update web server")
       #updateServer(espID,value,message.topic)                             
       #ret= client.publish("ambco",str(value))
-      message2 = "{}:{}".format(token,3)
+      message2 = "{}:{}:{}".format(token,3,3)
       ret= client.publish("ventoinha",message2)
       
     else:
