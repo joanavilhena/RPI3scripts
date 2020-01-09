@@ -107,7 +107,7 @@ def getServerData():
   #  r= response.json()
   #  print("Fan")
   r = response
-  print(r)
+  print(r.content)
     #print(len(r['sensor_data']))
   #r=response.json()
   if (r['water_force'] == 1):
