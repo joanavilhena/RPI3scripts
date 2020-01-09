@@ -302,9 +302,9 @@ client.subscribe("ventoinha",1)
 
 print("Iniciou")
 while(True):
-  getSolutionData()
+  #getSolutionData()
   getServerData()
-  subscribe.callback(print_msg, "#", hostname=broker)
+  #subscribe.callback(print_msg, "#", hostname=broker)
 
 #createSensorDataWebServer(2,4,200,"testepy")
 #login()
