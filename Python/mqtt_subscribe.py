@@ -99,12 +99,13 @@ def createSolution():
 def getServerData():
 #http://206.189.23.62/api/solution/token/4567890
 ##########ALTERAR########
-  response = requests.get(webserver +'api/solution/sensorData/' + token)
+#/solution/sensorData/4567890
+  response = requests.get(webserver +'api/solution/sensorData' + token)
   if response.status_code != 200:
     print(response.status_code)
   else:
     r= response.json()
-    print(len(r['sensor_data']))
+    #print(len(r['sensor_data']))
 
   if (r['water_force'] == 1):
     message = "{}:{}:{}".format(token,3,3)
@@ -117,7 +118,7 @@ def getServerData():
 
   print('{} {}'.format(r['water_force'], r['fan_force']))
   if len(r['sensor_data'])!=0:
-    print("no sensor data")
+    print("sensor data")
     for i in r:
       print(i)
     #  print('{}'.format( i['id']))
@@ -149,7 +150,7 @@ def getServerData():
       #  pass
       
   else:
-    print("has data")
+    print("has no data")
   pass
 
 
