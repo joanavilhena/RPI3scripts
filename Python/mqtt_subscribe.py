@@ -110,11 +110,11 @@ def getServerData():
     #print(len(r['sensor_data']))
 
   if (r['water_force'] == 1):
-    message = "{}:{}:{}".format(token,3,3)
+    message="{}:{}:{}".format(token,3,3)
     ret= client.publish("rega",message)
     
   if (r['fan_force'] == 1):
-    message = "{}:{}:{}".format(token,3)
+    message="{}:{}".format(token,3)
     ret= client.publish("ventoinha",message)
 
 
@@ -124,7 +124,7 @@ def getServerData():
     for i in r['sensor_data']:
       print(i)
       print('{}'.format( i['id']))
-      message = "{}:{}:1:{}".format(token,i['id'],i['value'])
+      message="{}:{}:1:{}".format(token,i['id'],i['value'])
       if(i['name']=='luz'):                           
         ret= client.publish("luz",message)
       elif(i['name']=='ambtemp'):                            
@@ -140,13 +140,13 @@ def getServerData():
       elif(i['name']=='solohum'):                                
         ret= client.publish("solohum",message)
         if(i['value'] < i['min_value']):
-          message2 = "{}:{}:{}".format(token,3,3)
+          message2="{}:{}:{}".format(token,3,3)
           ret= client.publish("rega",message2)
          
       elif(r['water_force']=='rega'):                                
        ret= client.publish("rega",message)
       elif(r['fan_force']=='ventoinha'):                                
-        message2 = "{}:{}:{}".format(token,3)
+        message2="{}:{}".format(token,3)
         ret= client.publish("ventoinha",message2)
       else:
         print("nada")
@@ -272,7 +272,7 @@ def print_msg(client, userdata, message):
       print("update web server")
       #updateServer(espID,value,message.topic)                             
       #ret= client.publish("ambco",str(value))
-      message2 = "{}:{}:{}".format(token,3)
+      message2 = "{}:{}".format(token,3)
       ret= client.publish("ventoinha",message2)
       
     else:
