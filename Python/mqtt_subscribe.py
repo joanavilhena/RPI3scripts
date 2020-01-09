@@ -100,7 +100,7 @@ def getServerData():
 #http://206.189.23.62/api/solution/token/4567890
 ##########ALTERAR########
 #/solution/sensorData/4567890
-  response = requests.get(webserver +'api/solution/sensorData' + token)
+  response = requests.get(webserver +'api/solution/sensorData/' + token)
   if response.status_code != 200:
     print(response.status_code)
   else:
