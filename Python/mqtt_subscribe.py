@@ -28,7 +28,8 @@ def login():
   else:
     global token
     token=r.json()
-  pass
+  
+
 
 def ligarRega():
   url = "http://206.189.23.62/api/solution/force/water/update/4567890"
@@ -42,7 +43,7 @@ def ligarRega():
 
   print(response.text.encode('utf8'))
 
-  pass
+  
 
 def ligarVentoinha():
   url = "http://206.189.23.62/api/solution/force/fan/update/4567890"
@@ -56,7 +57,7 @@ def ligarVentoinha():
 
   print(response.text.encode('utf8'))
 
-  pass
+  
 
 def getSolutionData():
 
@@ -72,7 +73,7 @@ def getSolutionData():
   
     
     
-  pass
+  
 
 
 def createSolution():
@@ -92,8 +93,7 @@ def createSolution():
   else:
     #r= response.json()
     print(response.status_code)
-    pass
-  pass
+
 
 
 def getServerData():
@@ -149,7 +149,7 @@ def getServerData():
         message2 = "{}:{}:{}".format(token,3)
         ret= client.publish("ventoinha",message2)
       else:
-        pass
+        print("nada")
       
   else:
     print("has no data")
@@ -183,8 +183,8 @@ def createSensorDataWebServer(espID,value,topic):
       #global token
       #token=r.json()
     print("Created")
-    pass
-  pass
+    
+  
 
 
 def updateServer(espID,value,topic):
@@ -208,8 +208,8 @@ def updateServer(espID,value,topic):
     #global token
     #token=r.json()
     print("Updated")
-    pass
-  pass
+    
+  
 
 
 def getSensor(topic,espID):
@@ -278,13 +278,13 @@ def print_msg(client, userdata, message):
     else:
       print("Topic not valid")
       print(message.topic)  
-    pass
+    
 
 
   else:
     print("create sensor")
     createSensorDataWebServer(espID,value,message.topic)
-    pass
+    
 
 client= paho.Client("RPI3")
 client.connect(broker,port)
