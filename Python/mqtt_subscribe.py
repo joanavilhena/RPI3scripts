@@ -31,9 +31,31 @@ def login():
   pass
 
 def ligarRega():
+  url = "http://206.189.23.62/api/solution/force/water/update/4567890"
+
+  payload = "{\n\t\"water_force\" : 1\n}"
+  headers = {
+    'Content-Type': 'application/json'
+  }
+
+  response = requests.request("POST", url, headers=headers, data = payload)
+
+  print(response.text.encode('utf8'))
+
   pass
 
 def ligarVentoinha():
+  url = "http://206.189.23.62/api/solution/force/fan/update/4567890"
+
+  payload = "{\n\t\"fan_force\" : 1\n}"
+  headers = {
+    'Content-Type': 'application/json'
+  }
+
+  response = requests.request("POST", url, headers=headers, data = payload)
+
+  print(response.text.encode('utf8'))
+
   pass
 
 def getSolutionData():
@@ -84,6 +106,15 @@ def getServerData():
     r= response.json()
     print(len(r['sensor_data']))
 
+  if (r['water_force'] == 1):
+    message = "{}:{}:{}".format(token,3,3)
+    ret= client.publish("rega",message)
+    
+  if (r['fan_force'] == 1):
+    message = "{}:{}:{}".format(token,3)
+    ret= client.publish("ventoinha",message)
+
+
   print('{} {}'.format(r['water_force'], r['fan_force']))
   if len(r['sensor_data'])!=0:
     print("no sensor data")
@@ -105,11 +136,14 @@ def getServerData():
       elif(i['name']=='solohum'):                                
         ret= client.publish("solohum",message)
         if(i['value'] < i['min_value']):
-          ret= client.publish("rega","1:3")
+          message2 = "{}:{}:{}".format(token,3,3)
+          ret= client.publish("rega",message2)
+         
       elif(r['water_force']=='rega'):                                
        ret= client.publish("rega",message)
       elif(r['fan_force']=='ventoinha'):                                
-       ret= client.publish("ventoinha",message)
+        message2 = "{}:{}:{}".format(token,3)
+        ret= client.publish("ventoinha",message2)
       else:
         pass
       
@@ -196,9 +230,14 @@ def print_msg(client, userdata, message):
 
 
   if(message.topic == "rega"):
+
+    array = message.payload.split(":")
+    espID = array[1]
   
     ligarRega()
   elif(message.topic == "ventoinha"):
+    array = message.payload.split(":")
+    espID = array[1]
     ligarVentoinha()
 
   elif(getSensor(message.topic,espID)):
@@ -227,8 +266,11 @@ def print_msg(client, userdata, message):
       #ret= client.publish("solohum",str(value))
     elif (message.topic == "ambco" ):
       print("update web server")
-      updateServer(espID,value,message.topic)                             
+      #updateServer(espID,value,message.topic)                             
       #ret= client.publish("ambco",str(value))
+      message2 = "{}:{}:{}".format(token,3)
+      ret= client.publish("ventoinha",message2)
+      
     else:
       print("Topic not valid")
       print(message.topic)  
