@@ -119,38 +119,38 @@ def getServerData():
 
 
   #print('{} {}'.format(r['water_force'], r['fan_force']))
-  if len(r['sensor_data'])!=0:
-    print("sensor data")
-    for i in r['sensor_data']:
-      print(i)
-      print('{}'.format( i['id']))
-      message="{}:{}:1:{}".format(token,i['id'],i['value'])
-      if(i['name']=='luz'):                           
-        ret= client.publish("luz",message)
-      elif(i['name']=='ambtemp'):                            
-        ret= client.publish("ambtemp",message)
-      elif(i['name']=='ambhum'):                               
-        ret= client.publish("ambhum",message)
-  #############################DESCONMENTAR QUANDO O TOMAS DER AS APIS######################################
-      # if(b['state']=="LIGADO" && ventoinha['state']=="ON" && (i['value']>i['max_vallue']))
-       #     ret= client.publish("rega","1:3")
-  ##########################################################################################################
-      elif(i['name']=='solotemp'):                                
-        ret= client.publish("solotemp",message)
-      elif(i['name']=='solohum'):                                
-        ret= client.publish("solohum",message)
-        if(i['value'] < i['min_value']):
-          message2="{}:{}:{}".format(token,3,3)
-          ret= client.publish("rega",message2)
-         
-      elif(r['water_force']=='rega'):                                
-       ret= client.publish("rega",message)
-      elif(r['fan_force']=='ventoinha'):                                
-        message2="{}:{}".format(token,3)
-        ret= client.publish("ventoinha",message2)
-      else:
-        print("nada")
-      
+    if len(r['sensor_data'])!=0:
+      print("sensor data")
+      for i in r['sensor_data']:
+        print(i)
+        print('{}'.format( i['id']))
+        message="{}:{}:1:{}".format(token,i['id'],i['value'])
+        if(i['name']=='luz'):                           
+          ret= client.publish("luz",message)
+        elif(i['name']=='ambtemp'):                            
+          ret= client.publish("ambtemp",message)
+        elif(i['name']=='ambhum'):                               
+          ret= client.publish("ambhum",message)
+    #############################DESCONMENTAR QUANDO O TOMAS DER AS APIS######################################
+        # if(b['state']=="LIGADO" && ventoinha['state']=="ON" && (i['value']>i['max_vallue']))
+        #     ret= client.publish("rega","1:3")
+    ##########################################################################################################
+        elif(i['name']=='solotemp'):                                
+          ret= client.publish("solotemp",message)
+        elif(i['name']=='solohum'):                                
+          ret= client.publish("solohum",message)
+          if(i['value'] < i['min_value']):
+            message2="{}:{}:{}".format(token,3,3)
+            ret= client.publish("rega",message2)
+          
+        elif(r['water_force']=='rega'):                                
+        ret= client.publish("rega",message)
+        elif(r['fan_force']=='ventoinha'):                                
+          message2="{}:{}".format(token,3)
+          ret= client.publish("ventoinha",message2)
+        else:
+          print("nada")
+        
   else:
     print("has no data")
   
