@@ -106,6 +106,7 @@ def getServerData():
   #else:
   #  r= response.json()
   #  print("Fan")
+    r = response
     print(r)
     #print(len(r['sensor_data']))
   #r=response.json()
