@@ -105,6 +105,7 @@ def getServerData():
     print(response.status_code)
   else:
     r= response.json()
+    print(r)
     #print(len(r['sensor_data']))
 
   if (r['water_force'] == 1):
