@@ -118,7 +118,7 @@ def getServerData():
       ret= client.publish("ventoinha",message)
 
 
-  print('{} {}'.format(r['water_force'], r['fan_force']))
+  #print('{} {}'.format(r['water_force'], r['fan_force']))
   if len(r['sensor_data'])!=0:
     print("sensor data")
     for i in r['sensor_data']:
