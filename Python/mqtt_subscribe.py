@@ -142,12 +142,6 @@ def getServerData():
         if(i['value'] < i['min_value']):
           message2="{}:{}:{}".format(token,3,3)
           ret= client.publish("rega",message2)
-         
-      elif(r['water_force']=='rega'):                                
-       ret= client.publish("rega",message)
-      elif(r['fan_force']=='ventoinha'):                                
-        message2="{}:{}".format(token,3)
-        ret= client.publish("ventoinha",message2)
       else:
         print("nada")
       
