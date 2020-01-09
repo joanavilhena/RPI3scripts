@@ -106,9 +106,9 @@ def getServerData():
   #else:
   #  r= response.json()
   #  print("Fan")
-  #  print(r['fan_force'])
+    print(r)
     #print(len(r['sensor_data']))
-  r=response.json()
+  #r=response.json()
   if (r['water_force'] == 1):
     message="{}:{}:{}".format(token,3,3)
     ret= client.publish("rega",message)
