@@ -103,7 +103,7 @@ def getServerData():
   response = requests.get(webserver +'api/solution/sensorData/' + token)
   if response.status_code != 200:
     print(response.status_code)
-  else:
+  #else:
   #  r= response.json()
   #  print("Fan")
   r = response
