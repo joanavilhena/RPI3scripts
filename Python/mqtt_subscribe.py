@@ -144,7 +144,7 @@ def getServerData():
             ret= client.publish("rega",message2)
           
         elif(r['water_force']=='rega'):                                
-        ret= client.publish("rega",message)
+          ret= client.publish("rega",message)
         elif(r['fan_force']=='ventoinha'):                                
           message2="{}:{}".format(token,3)
           ret= client.publish("ventoinha",message2)
