@@ -120,7 +120,7 @@ def getServerData():
   print('{} {}'.format(r['water_force'], r['fan_force']))
   if len(r['sensor_data'])!=0:
     print("sensor data")
-    for i in r:
+    for i in r['sensor_data']:
       print(i)
     #  print('{}'.format( i['id']))
      # message = "{}:{}:1:{}".format(token,i['id'],i['value'])
