@@ -42,7 +42,7 @@ def ligarRega():
 
   response = requests.request("POST", url, headers=headers, data = payload)
 
-  print(response.text.encode('utf8'))
+#  print(response.text.encode('utf8'))
 
   
 
@@ -56,7 +56,7 @@ def ligarVentoinha():
 
   response = requests.request("POST", url, headers=headers, data = payload)
 
-  print(response.text.encode('utf8'))
+  #print(response.text.encode('utf8'))
 
   
 
@@ -78,10 +78,10 @@ def getSolutionData():
   #response = requests.get(webserver +'api/solution/token/' + token)
   if response.status_code == 404:
     print(response.status_code) 
-    print(response)
+    #(response)
     createSolution()
   else:
-    print(response.json())
+    print("OKOK")
   
     
     
@@ -316,7 +316,7 @@ while(True):
   getSolutionData()
   getServerData()
   time.sleep(15)
-  #subscribe.callback(print_msg, "#", hostname=broker)
+  subscribe.callback(print_msg, "#", hostname=broker)
 
 #createSensorDataWebServer(2,4,200,"testepy")
 #login()
