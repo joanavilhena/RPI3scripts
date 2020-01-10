@@ -141,7 +141,7 @@ def getServerData():
     for i in r['sensor_data']:
       print(i)
       print('{}'.format( i['id']))
-      message="{}:1:1:{}:1:1:{}:1".format(token,i['value'],i['threshold'])
+      message="{}:1:1:{}:{}:1".format(token,i['value'],i['threshold'])
       if(i['name']=='luz'):                           
         ret= client.publish("luz",message)
       elif(i['name']=='ambtemp'):                            
