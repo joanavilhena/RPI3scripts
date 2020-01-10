@@ -249,7 +249,7 @@ def getSensor(topic,espID):
 def print_msg(client, userdata, message):
   getSolutionData()
   getServerData()
-  time.sleep(15)
+  #time.sleep(15)
 
   print("%s  %s" % (message.topic, message.payload))
   array = message.payload.split(":")
