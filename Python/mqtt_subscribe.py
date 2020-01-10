@@ -91,17 +91,14 @@ def getSolutionData():
 def createSolution():
   print("Create")
   url = "http://206.189.23.62/api/solution/simple"
-  payload = "{\r\n    \"token\": \""+ str(token) +"\",\r\n    \"vip\": 1\r\n}"
-  headers = {
-    'Content-Type': 'application/json'
-  }
+ 
 
   payload = "{\n\t\"toke\": \""+ str(token)+"\",\n\t\"token_hub\": \""+str(token_hub)+"\"\n\t\n}"
-headers = {
+  headers = {
   'Content-Type': 'application/json'
-}
+  }
 
-response = requests.request("POST", url, headers=headers, data = payload)
+
   
   response = requests.request("POST", url, headers=headers, data = payload)
 
