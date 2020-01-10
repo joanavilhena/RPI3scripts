@@ -141,7 +141,7 @@ def getServerData():
     for i in r['sensor_data']:
       print(i)
       print('{}'.format( i['id']))
-      message="{}:1:1:{}:1".format(token,i['value'])
+      message="{}:1:1:{}:1:1:{}:1".format(token,i['value'],i['threshold'])
       if(i['name']=='luz'):                           
         ret= client.publish("luz",message)
       elif(i['name']=='ambtemp'):                            
@@ -315,7 +315,7 @@ print("Iniciou")
 while(True):
   getSolutionData()
   getServerData()
-  time.sleep(5)
+  time.sleep(15)
   #subscribe.callback(print_msg, "#", hostname=broker)
 
 #createSensorDataWebServer(2,4,200,"testepy")
