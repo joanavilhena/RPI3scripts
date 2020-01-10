@@ -298,7 +298,7 @@ client.subscribe("ventoinha",1)
 
 print("Iniciou")
 while(True):
-  #getSolutionData()
+  getSolutionData()
   getServerData()
   time.sleep(5)
   #subscribe.callback(print_msg, "#", hostname=broker)
