@@ -33,7 +33,7 @@ def login():
 
 
 def ligarRega():
-  url = "http://206.189.23.62/api/solution/water/update/4567890"
+  url = "http://206.189.23.62/api/solution/water/update/4567891"
 
   payload = "{\n\t\"water_force\" : 1\n}"
   headers = {
@@ -47,7 +47,7 @@ def ligarRega():
   
 
 def ligarVentoinha():
-  url = "http://206.189.23.62/api/solution/fan/update/4567890"
+  url = "http://206.189.23.62/api/solution/fan/update/" + token
 
   payload = "{\n\t\"fan_force\" : 1\n}"
   headers = {
@@ -62,10 +62,19 @@ def ligarVentoinha():
 
 def getSolutionData():
 
+  url = "http://206.189.23.62/api/solution/token/"+ token
   print("Get solutionData")
 
-  response = requests.get(webserver +'api/solution/token/' + token)
-  if response.status_code != 200:
+  payload = "{\n\t\"water_force\" : 1\n}"
+  headers = {
+    'Content-Type': 'application/json'
+  }
+
+  response = requests.request("GET", url, headers=headers, data = payload)
+
+
+  #response = requests.get(webserver +'api/solution/token/' + token)
+  if response.status_code == 404:
     print(response.status_code) 
     print(response)
     createSolution()
