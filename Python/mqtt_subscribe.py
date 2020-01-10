@@ -12,7 +12,7 @@ port=1883
 
 #token = '1356'
 token = '4567891'
-token_hub = ''
+token_hub = '123'
 
 def login():
   url = "http://206.189.23.62/api/login"
@@ -95,6 +95,13 @@ def createSolution():
   headers = {
     'Content-Type': 'application/json'
   }
+
+  payload = "{\n\t\"toke\": \""+ str(token)+"\",\n\t\"token_hub\": \""str(token_hub)"\"\n\t\n}"
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data = payload)
   
   response = requests.request("POST", url, headers=headers, data = payload)
 
