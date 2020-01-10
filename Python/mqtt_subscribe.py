@@ -247,6 +247,9 @@ def getSensor(topic,espID):
     return False
 
 def print_msg(client, userdata, message):
+  getSolutionData()
+  getServerData()
+  time.sleep(15)
 
   print("%s  %s" % (message.topic, message.payload))
   array = message.payload.split(":")
@@ -322,12 +325,11 @@ client.subscribe("ventoinha",1)
 
 subscribe.callback(print_msg, "#", hostname=broker)
 
-
 print("Iniciou")
-while(True):
-  getSolutionData()
-  getServerData()
-  time.sleep(15)
+#while(True):
+ # getSolutionData()
+ # getServerData()
+ # time.sleep(15)
  
 
 #createSensorDataWebServer(2,4,200,"testepy")
