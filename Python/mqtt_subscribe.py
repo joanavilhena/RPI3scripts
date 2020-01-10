@@ -204,7 +204,7 @@ def updateServer(espID,value,topic):
 
   url = "http://206.189.23.62/api/sensorData/update"
 
-  payload = "{\r\n\t\"name\" : \"luz\",\r\n\t\"token\" : 2,\r\n\t\"value\": 200,\r\n    \"min_value\": 10,\r\n    \"max_value\": 50\r\n\t\r\n}"
+  payload = "{\r\n\t\"name\" : "+ topic +"\,\r\n\t\"token\" : "+ espID+",\r\n\t\"value\": "+ value +",\r\n    \"min_value\": 10,\r\n    \"max_value\": 50\r\n\t\r\n}"
   headers = {'Content-Type': 'application/json'}
 
   r = requests.request("POST", url, headers=headers, data = payload)
