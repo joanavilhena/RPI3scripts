@@ -320,6 +320,7 @@ client.subscribe("ambco",1)
 client.subscribe("rega",1)
 client.subscribe("ventoinha",1)
 
+subscribe.callback(print_msg, "#", hostname=broker)
 
 
 print("Iniciou")
@@ -327,7 +328,7 @@ while(True):
   getSolutionData()
   getServerData()
   time.sleep(15)
-  subscribe.callback(print_msg, "#", hostname=broker)
+ 
 
 #createSensorDataWebServer(2,4,200,"testepy")
 #login()
