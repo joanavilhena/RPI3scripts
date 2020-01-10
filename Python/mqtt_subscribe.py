@@ -62,6 +62,8 @@ def ligarVentoinha():
 
 def getSolutionData():
 
+  print("GET SOLUTION DATA")
+
   url = "http://206.189.23.62/api/solution/token/"+ token
   print("Get solutionData")
 
