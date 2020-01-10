@@ -96,7 +96,7 @@ def createSolution():
     'Content-Type': 'application/json'
   }
 
-  payload = "{\n\t\"toke\": \""+ str(token)+"\",\n\t\"token_hub\": \""str(token_hub)"\"\n\t\n}"
+  payload = "{\n\t\"toke\": \""+ str(token)+"\",\n\t\"token_hub\": \""+str(token_hub)+"\"\n\t\n}"
 headers = {
   'Content-Type': 'application/json'
 }
