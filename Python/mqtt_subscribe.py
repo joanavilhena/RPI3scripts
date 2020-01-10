@@ -93,7 +93,7 @@ def createSolution():
   url = "http://206.189.23.62/api/solution/simple"
  
 
-  payload = "{\n\t\"toke\": \""+ str(token)+"\",\n\t\"token_hub\": \""+str(token_hub)+"\"\n\t\n}"
+  payload = "{\n\t\"token\": \""+ str(token)+"\",\n\t\"token_hub\": \""+str(token_hub)+"\"\n\t\n}"
   headers = {
   'Content-Type': 'application/json'
   }
