@@ -42,6 +42,7 @@ def ligarRega():
 
   response = requests.request("POST", url, headers=headers, data = payload)
 
+  print(response.status_code)
 #  print(response.text.encode('utf8'))
 
   
@@ -56,6 +57,7 @@ def ligarVentoinha():
 
   response = requests.request("POST", url, headers=headers, data = payload)
 
+  print(response.status_code)
   #print(response.text.encode('utf8'))
 
   
@@ -202,12 +204,21 @@ def updateServer(espID,value,topic):
   print("Funcao UPDATE")
 
 
+#  url = "http://206.189.23.62/api/sensorData/update"
+
+ # payload = "{\r\n\t\"name\" : "+ topic +"\,\r\n\t\"token\" : "+ espID+",\r\n\t\"value\": "+ value +",\r\n    \"min_value\": 10,\r\n    \"max_value\": 50\r\n\t\r\n}"
+#  headers = {'Content-Type': 'application/json'}
+
+ # r = requests.request("POST", url, headers=headers, data = payload)
+
   url = "http://206.189.23.62/api/sensorData/update"
 
-  payload = "{\r\n\t\"name\" : "+ topic +"\,\r\n\t\"token\" : "+ espID+",\r\n\t\"value\": "+ value +",\r\n    \"min_value\": 10,\r\n    \"max_value\": 50\r\n\t\r\n}"
-  headers = {'Content-Type': 'application/json'}
+  payload = "{ \r\n\t\"token\" : \""+ token +"\",\r\n\t\"name\" : \""+ topic +"\",\r\n\t\"value\" : "+ value+"\r\n}"
+  headers = {
+    'Content-Type': 'application/json'
+  }
 
-  r = requests.request("POST", url, headers=headers, data = payload)
+  response = requests.request("POST", url, headers=headers, data = payload)
 
   print(r.text.encode('utf8'))
   print(r.status_code)
